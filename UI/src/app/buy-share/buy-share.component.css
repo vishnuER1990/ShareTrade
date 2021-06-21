@@ -1,0 +1,11 @@
+.mod {
+    width: 700px !important;
+    background-color: #fff;
+    position: absolute;
+    left: 72%;
+    top: 50%;
+    margin-left: -455px;
+    border-radius: 2px;
+    max-height: 400px;
+      overflow-y: auto;
+  }

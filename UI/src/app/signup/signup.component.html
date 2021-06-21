@@ -1,0 +1,118 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
+	type = "square-loader" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" [formGroup]="formGroup">
+					<span class="login100-form-title p-b-26">
+						Register
+					</span>
+					<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
+						
+					<div style=" font-size: smaller; color: red;" *ngIf="formGroup.get('firstNameFormControl').touched && formGroup.get('firstNameFormControl').hasError('required')">First Name is required</div>	
+
+					<div class="wrap-input100 validate-input">
+						 <input class="input100" type="text"  required placeholder="First Name" [(ngModel)]="firstName" formControlName="firstNameFormControl">
+					</div>
+					<div style=" font-size: smaller; color: red;" *ngIf="formGroup.get('lastNameFormControl').touched && formGroup.get('lastNameFormControl').hasError('required')">Last Name is required</div>
+
+					<div class="wrap-input100 validate-input"  >
+						<input class="input100" type="text"  placeholder="Last Name" [(ngModel)]="lastName" formControlName="lastNameFormControl">	
+					</div>
+
+					<div style=" font-size: smaller; color: red;" *ngIf="formGroup.get('emailFormControl').touched && formGroup.get('emailFormControl').hasError('required')">Email is required</div>	
+
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="text"  placeholder="Email Address" [(ngModel)]="email"  formControlName="emailFormControl">						
+					</div>
+
+					<div style=" font-size: smaller; color: red;" *ngIf="formGroup.controls['contactNumberFormControl'].touched && formGroup.controls['contactNumberFormControl'].errors?.required">Contact Number is required</div>  
+					<div  style=" font-size: smaller; color: red; "*ngIf="formGroup.controls['contactNumberFormControl'].touched && formGroup.controls['contactNumberFormControl'].errors?.minlength">Contact Number should be minimum 8 digits</div>  
+					<div style=" font-size: smaller; color: red;" *ngIf="formGroup.controls['contactNumberFormControl'].touched && formGroup.controls['contactNumberFormControl'].errors?.maxlength">Contact Number should be 8 digits</div> 
+
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="text"  (keypress)="keyPress($event)" placeholder="Contact Number" [(ngModel)]="contactNumber" formControlName="contactNumberFormControl">
+					</div>
+					
+					<div style=" font-size: smaller; color: red;" *ngIf="formGroup.get('QIDFormControl').touched && formGroup.controls['QIDFormControl'].errors?.required">QID Number is required</div>	
+					<div style=" font-size: smaller; color: red;" *ngIf="formGroup.get('QIDFormControl').touched && formGroup.controls['QIDFormControl'].errors?.minlength">QID Number should be minimum 11 digits</div>	
+					<div style=" font-size: smaller; color: red;" *ngIf="formGroup.get('QIDFormControl').touched && formGroup.controls['QIDFormControl'].errors?.maxlength">QID Number should be 11 digits</div>					
+					<div style=" font-size: smaller; color: red;" *ngIf="formGroup.get('QIDFormControl').touched &&  formGroup.get('QIDFormControl').hasError('QIDMatch')">QID is invalid</div>		
+
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text"  placeholder="QID Number" (keypress)="keyPressQID($event)" [(ngModel)]="QID" formControlName="QIDFormControl">						
+					</div>
+
+					<div style=" font-size: smaller; color: red;" *ngIf="formGroup.get('userNameFormControl').touched && formGroup.get('userNameFormControl').hasError('required')">UserName is required</div>	
+
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="text" placeholder="UserName" [(ngModel)]="userName" formControlName="userNameFormControl">						
+					</div>
+					
+					<div style=" font-size: smaller; color: red;" *ngIf="formGroup.get('passwordFormControl').touched && formGroup.get('passwordFormControl').hasError('required')">Password is required</div>	
+					<div style=" font-size: smaller; color: red;" *ngIf="formGroup.get('passwordFormControl').touched && formGroup.get('passwordFormControl').hasError('invalidPassword')">Password must have lowercase letters, uppercase letters, numbers and special characters</div>	
+
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="password" placeholder="Password" [(ngModel)]="password" formControlName="passwordFormControl">
+					</div>
+					
+					<div style=" font-size: smaller; color: red;" *ngIf="formGroup.get('repasswordFormControl').touched &&  formGroup.get('repasswordFormControl').hasError('required')">Re Enter password is required</div>
+					<div style=" font-size: smaller; color: red;" *ngIf="formGroup.get('repasswordFormControl').touched &&  formGroup.get('repasswordFormControl').hasError('passwordMatch')">Password does not match</div>		 
+					
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="password" placeholder="Re Enter password" [(ngModel)]="repassword" formControlName="repasswordFormControl" >
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" (click)="register()">
+								Register
+							</button>
+						</div>
+					</div>
+
+					<div class="text-center p-t-115">
+						<span class="txt1">
+							Already have an account?
+                        </span>
+                        <span class="txt1Link" (click)="login()">
+							Login
+						</span>
+					</div>
+				</form>
+			</div>
+			
+		</div>
+	</div>
+
+	<ng-template #Successtemplate>
+			<div id="successModal" class="modal-body text-center">
+			  <p style="font-size: 23px;">{{successTemplateMessage}}</p>
+			  <button type="button" class="btn btn-default" (click)="okay()" >Okay</button>
+			</div>
+	  </ng-template>
+
+	  <ng-template #ErrorTemplate>
+			<button type="button" class="close pull-right" style="padding-left: 469px;" aria-label="Close" (click)="modalRefError.hide()">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+		<div class="container-login100-Popup">
+			<p>{{errorTemplateMsg}}</p>
+		</div> 
+  		</ng-template>
+	
+</body>
+</html>

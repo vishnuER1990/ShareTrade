@@ -1,0 +1,432 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
+type = "square-loader" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<form class="example-form" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10" *ngIf="!IsAdmin">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Sale</h4>
+                        <p class="card-category">Submit sale details</p>
+                    </div>
+                    <div class="card-body">
+                       
+                            <div class="row">
+                                
+                                <div class="col-md-4" style="padding-bottom: 10px;">
+                                       <mat-form-field class="example-full-width">
+                                         <input matInput placeholder="AvailableShares" type="text" readonly [(ngModel)]="AvailableShares" 
+                                         formControlName="AvailableSharesFC">
+                                       </mat-form-field>
+                                </div>      
+                                <div class="col-md-4" style="padding-bottom: 10px;">
+                                        <mat-form-field class="example-full-width">
+                                          <input matInput placeholder="Share Created Date" type="text" readonly [(ngModel)]="ShareCreatedDate" 
+                                          formControlName="ShareCreatedDateFC">
+                                        </mat-form-field>
+                                 </div>                    
+                            </div>
+                            <div class="row" >
+                                    <div class="col-md-4" style="padding-bottom: 10px;">
+                                            <mat-form-field class="example-full-width">
+                                              <input matInput placeholder="Number Of shares" type="number" [(ngModel)]="NumberOFShares" formControlName="NumberOFSharesFC">                                                  
+                                              <mat-error *ngIf="formGroup.controls['NumberOFSharesFC'].errors?.required">Number of shares is required</mat-error>   
+                                              <mat-error *ngIf="formGroup.controls['NumberOFSharesFC'].errors?.pattern">Please enter a valid number of shares</mat-error> 
+                                              <mat-error *ngIf="formGroup.controls['NumberOFSharesFC'].errors?.forbiddenName">Number of shares exceeds available shares</mat-error> 
+                                           
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-4" style="padding-bottom: 10px;">
+                                            <mat-form-field class="example-full-width">
+                                              <input matInput placeholder="Price Per Share" type="number" [(ngModel)]="UnitPrice" formControlName="UnitPriceFC">
+                                              <mat-error *ngIf="formGroup.controls['UnitPriceFC'].errors?.required">Please select share</mat-error> 
+                                              <mat-error *ngIf="formGroup.controls['UnitPriceFC'].errors?.pattern">Please enter a valid price</mat-error>    
+                                            </mat-form-field>
+                                        </div> 
+                                        <div class="col-md-4">
+                                          <mat-form-field appearance="fill">
+                                            <mat-label>Valid to</mat-label>
+                                            <input matInput [matDatepicker]="dp3" [min]="minDate" disabled formControlName="ValidToFC" [(ngModel)]="ValidTo">
+                                            <mat-error *ngIf="formGroup.controls['ValidToFC'].errors?.required">Please select expiry date</mat-error> 
+                                            <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                                            <mat-datepicker #dp3 disabled="false" ></mat-datepicker>
+                                          </mat-form-field>
+                                        </div>
+                            </div>
+                            <div class="row" >
+                               
+                                <div class="col-md-8" style="padding-bottom: 10px;" >
+                                    <label id="example-radio-group-label">Price Negotiable</label>
+                                    <mat-radio-group aria-label="Price Negotiable"  [(ngModel)]="PriceNegotiable" formControlName="PriceNegotiableFC" >
+                                      <mat-radio-button [value]="1" style="padding-left: 20px;">Yes</mat-radio-button>
+                                      <mat-radio-button [value]="2" [checked]="true" style="padding-left: 20px;">No</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" class="btn btn-danger pull-right" >Submit Sale</button>
+                            <div class="clearfix"></div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Sale List</h4>
+                        <p class="card-category"> List of shares submitted to sale</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table">
+                                <!-- SaleId Column -->
+                                <ng-container matColumnDef="SaleId">
+                                  <th mat-header-cell *matHeaderCellDef> SaleId </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.SaleId}} </td>
+                                </ng-container>
+                                <!-- ShareDetailsId Column -->
+                                <ng-container matColumnDef="ShareDetailsId">
+                                  <th mat-header-cell *matHeaderCellDef> ShareDetailsId </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.ShareDetailsId}} </td>
+                                </ng-container>
+                                <!-- ProposalId Column -->
+                                <ng-container matColumnDef="ProposalId">
+                                  <th mat-header-cell *matHeaderCellDef> ProposalId </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.ProposalId}} </td>
+                                </ng-container>
+                                <!-- NumberOfShares Column -->
+                                <ng-container matColumnDef="NumberOfShares">
+                                  <th mat-header-cell *matHeaderCellDef> Number Of Shares </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.NumberOfShares}} </td>
+                                </ng-container>
+                                <!-- UnitPrice Column -->
+                                <ng-container matColumnDef="UnitPrice">
+                                  <th mat-header-cell *matHeaderCellDef> Unit Price </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.UnitPrice}} </td>
+                                </ng-container>
+                                <!-- SaleRemarks Column -->
+                                <ng-container matColumnDef="SaleRemarks">
+                                  <th mat-header-cell *matHeaderCellDef> Remarks </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.SaleRemarks}} </td>
+                                </ng-container>
+                                <!-- Status Column -->
+                                <ng-container matColumnDef="Status">
+                                  <th mat-header-cell *matHeaderCellDef> Status </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.Status_String}} </td>
+                                </ng-container>
+                                <!-- StatusComments Column -->
+                                <ng-container matColumnDef="StatusComments">
+                                  <th mat-header-cell *matHeaderCellDef> StatusComments </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.StatusComments}} </td>
+                                </ng-container>
+                                <!-- AvailableShares Column -->
+                                <ng-container matColumnDef="AvailableShares">
+                                  <th mat-header-cell *matHeaderCellDef> AvailableShares </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.AvailableShares}} </td>
+                                </ng-container>
+                                <!-- ShareDescription Column -->
+                                <ng-container matColumnDef="ShareDescription">
+                                  <th mat-header-cell *matHeaderCellDef> Description </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.ShareDescription}} </td>
+                                </ng-container>
+                                <!-- CreatedDt Column -->
+                                <ng-container matColumnDef="CreatedDt">
+                                  <th mat-header-cell *matHeaderCellDef> Created Date </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.CreatedDt  | date}} </td>
+                                </ng-container>
+                                <!-- CreatedBy Column -->
+                                <ng-container matColumnDef="CreatedBy_String">
+                                  <th mat-header-cell *matHeaderCellDef> CreatedBy </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.CreatedBy_String}} </td>
+                                </ng-container>
+                                <!-- UpdatedDt Column -->
+                                <ng-container matColumnDef="UpdatedDt">
+                                  <th mat-header-cell *matHeaderCellDef> UpdatedDt </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.UpdatedDt  | date}} </td>
+                                </ng-container>
+                                <!-- UpdatedBy_String Column -->
+                                <ng-container matColumnDef="UpdatedBy_String">
+                                  <th mat-header-cell *matHeaderCellDef> UpdatedBy </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.UpdatedBy_String}} </td>
+                                </ng-container>
+                                 <!-- IsNegotiable Column -->
+                                 <ng-container matColumnDef="IsNegotiable">
+                                    <th mat-header-cell *matHeaderCellDef> Price Negotiable </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.IsNegotiable?'Yes':'No'}} </td>
+                                  </ng-container>
+                                <!-- BidCount Column -->
+                                <ng-container matColumnDef="BidCount">
+                                  <th mat-header-cell *matHeaderCellDef> Bids </th>
+                                  <td mat-cell *matCellDef="let element"> 
+                                        <button mat-raised-button matTooltip="View Bids" type="button" (click)="openBidActionModal(element.SaleId, Bidtemplate)" class="btn btn-white btn-round btn-just-icon">
+                                                <i class="material-icons">card_travel</i>
+                                        </button>
+                                  </td>
+                                </ng-container>
+                                 <!-- Actions Column -->
+                                 <ng-container matColumnDef="Actions">
+                                        <th mat-header-cell *matHeaderCellDef> Actions </th>
+                                        <td mat-cell *matCellDef="let element">
+                                               <!--  <button mat-raised-button matTooltip="View deails" type="button" (click)="openinfoActionModal(element.SaleId, deletetemplate)" class="btn btn-white btn-round btn-just-icon">
+                                                        <i class="material-icons">info</i>
+                                                </button> -->
+                                                <button mat-raised-button matTooltip="Edit sale" *ngIf="!IsAdmin"  type="button" 
+                                                (click)="openEditActionModal(element.SaleId,element.ShareDetailsId, edittemplate)" class="btn btn-white btn-round btn-just-icon">
+                                                        <i class="material-icons">edit</i>
+                                                </button>
+                                                <button mat-raised-button matTooltip="Delete sale" *ngIf="!IsAdmin" type="button" 
+                                                (click)="openDeleteActionModal(element, deletetemplate)" class="btn btn-white btn-round btn-just-icon">
+                                                        <i class="material-icons">delete</i>
+                                                </button>
+                                        </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                              </table>                             
+  
+                            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+  </div>
+</form>
+
+  <ng-template #Successtemplate>
+        <div class="modal-body text-center">
+          <p>{{successTemplateMessage}}</p>
+          <button type="button" class="btn btn-default" (click)="successOkay()" >Okay</button>
+        </div>
+  </ng-template>
+
+  <ng-template #deletetemplate>
+        <div class="modal-body text-center">
+          <p>Do you want to remove the sale?</p>
+          <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+          <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+        </div>
+  </ng-template>
+
+  <ng-template #edittemplate>
+      <form class="example-form" [formGroup]="formGroupEditSale" (ngSubmit)="onSubmit()">
+      <div class="mod">        
+            <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Edit Sale</h4>
+                            <p class="card-category">Edit sale details</p>
+                        </div>
+                        <div class="card-body">                       
+                                <div class="row">                                    
+                                    <div class="col-md-4" style="padding-bottom: 10px;">
+                                           <mat-form-field class="example-full-width">
+                                             <input matInput placeholder="AvailableShares" type="text" readonly [(ngModel)]="AvailableSharesPopup" formControlName="AvailableSharesPopupFC">
+                                           </mat-form-field>
+                                    </div>      
+                                    <div class="col-md-4" style="padding-bottom: 10px;">
+                                            <mat-form-field class="example-full-width">
+                                              <input matInput placeholder="Share Created Date" type="text" readonly [(ngModel)]="ShareCreatedDatePopup" formControlName="ShareCreatedDatePopupFC">
+                                            </mat-form-field>
+                                     </div>                    
+                                </div>
+                                <div class="row">
+                                        <div class="col-md-4" style="padding-bottom: 10px;">
+                                                <mat-form-field class="example-full-width">
+                                                  <input matInput placeholder="Number Of shares"  type="number" [(ngModel)]="NumberOFSharesPopup" formControlName="NumberOFSharesPopupFC">                                   
+                                                  <mat-error *ngIf="formGroupEditSale.controls['NumberOFSharesPopupFC'].errors?.required">Please select share</mat-error> 
+                                                  <!-- <mat-error *ngIf="formGroupEditSale.controls['NumberOFSharesPopupFC'].errors?.pattern">Please enter a valid number of shares</mat-error>    -->
+                                                  <mat-error *ngIf="formGroupEditSale.controls['NumberOFSharesPopupFC'].errors?.forbiddenName">Number of shares exceeds available shares</mat-error>   
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-4" style="padding-bottom: 10px;">
+                                                <mat-form-field class="example-full-width">
+                                                  <input matInput placeholder="Price Per Share" type="number" [(ngModel)]="UnitPricePopup" formControlName="UnitPricePopupFC">
+                                                  <mat-error *ngIf="formGroupEditSale.controls['UnitPricePopupFC'].errors?.required">Please select share</mat-error> 
+                                                  <!-- <mat-error *ngIf="formGroupEditSale.controls['UnitPricePopupFC'].errors?.pattern">Please enter a valid price</mat-error>   -->
+                                                </mat-form-field>
+                                            </div>
+                                </div>
+                                <div class="row">
+                                   
+                                  <div class="col-md-4">
+                                    <mat-form-field appearance="fill">
+                                      <mat-label>Valid to</mat-label>
+                                      <input matInput [matDatepicker]="dp2" [min]="minDate" disabled formControlName="ValidToPopupFC" [(ngModel)]="ValidToPopup">
+                                      <mat-error *ngIf="formGroupEditSale.controls['ValidToPopupFC'].errors?.required">Please select expiry date</mat-error> 
+                                      <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                                      <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+                                    </mat-form-field>
+                                  </div>
+                                </div>
+                                <div class="row" >                               
+                                    <div class="col-md-8" style="padding-bottom: 10px;" >
+                                        <label id="example-radio-group-label">Price Negotiable</label>
+                                        <mat-radio-group aria-label="Price Negotiable"  [(ngModel)]="PriceNegotiablePopup" formControlName="PriceNegotiablePopupFC" >
+                                          <mat-radio-button [value]="1" style="padding-left: 20px;">Yes</mat-radio-button>
+                                          <mat-radio-button [value]="2" style="padding-left: 20px;">No</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+                                <button mat-raised-button type="button" class="btn btn-danger pull-right" (click)="saveEdit()">Save</button>
+                                <button mat-raised-button type="button" class="btn btn-danger pull-right" (click)="cancelEdit()">Cancel</button>
+                                <div class="clearfix">                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+      </div>
+      </form>
+  </ng-template>
+
+  
+  <ng-template #Bidtemplate>
+       
+        <div class="modBid"> 
+                <div class="modal-header">
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefBid.hide()">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>  
+        <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Bids</h4>
+                        <p class="card-category"> List of bids submitted for this sale</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table mat-table [dataSource]="dataSourceBid" class="mat-elevation-z8 table">
+                                <!-- ProposalId Column -->
+                                <ng-container matColumnDef="ProposalId">
+                                  <th mat-header-cell *matHeaderCellDef> ProposalId </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.ProposalId}} </td>
+                                </ng-container>
+                                <!-- SaleId Column -->
+                                <ng-container matColumnDef="SaleId">
+                                  <th mat-header-cell *matHeaderCellDef> SaleId </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.SaleId}} </td>
+                                </ng-container>
+                                <!-- BidPrice Column -->
+                                <ng-container matColumnDef="BidPrice">
+                                  <th mat-header-cell *matHeaderCellDef> BidPrice </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.BidPrice}} </td>
+                                </ng-container>
+                                <!-- BidUnit Column -->
+                                <ng-container matColumnDef="BidUnit">
+                                  <th mat-header-cell *matHeaderCellDef> BidUnit </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.BidUnit}} </td>
+                                </ng-container>
+                                <!-- NumberOfShares Column -->
+                                <ng-container matColumnDef="NumberOfShares">
+                                  <th mat-header-cell *matHeaderCellDef> NumberOfShares </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.NumberOfShares}} </td>
+                                </ng-container>
+                                <!-- UnitPrice Column -->
+                                <ng-container matColumnDef="UnitPrice">
+                                  <th mat-header-cell *matHeaderCellDef> UnitPrice </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.UnitPrice}} </td>
+                                </ng-container>
+                                <!-- CreatedBy Column -->
+                                <ng-container matColumnDef="CreatedBy">
+                                  <th mat-header-cell *matHeaderCellDef> CreatedBy </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.CreatedBy}} </td>
+                                </ng-container>
+                                <!-- UpdatedDt Column -->
+                                <ng-container matColumnDef="UpdatedDt">
+                                  <th mat-header-cell *matHeaderCellDef> UpdatedDt </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.UpdatedDt | Date}} </td>
+                                </ng-container>
+                                <!-- UpdatedBy Column -->
+                                <ng-container matColumnDef="UpdatedBy">
+                                  <th mat-header-cell *matHeaderCellDef> UpdatedBy </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.UpdatedBy}} </td>
+                                </ng-container>
+                                <!-- Status Column -->
+                                <ng-container matColumnDef="Status">
+                                  <th mat-header-cell *matHeaderCellDef> Status </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.Status}} </td>
+                                </ng-container>
+                                <!-- StatusComments Column -->
+                                <ng-container matColumnDef="StatusComments">
+                                  <th mat-header-cell *matHeaderCellDef> StatusComments </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.StatusComments}} </td>
+                                </ng-container> 
+                                <!-- CreatedDt Column -->
+                                <ng-container matColumnDef="CreatedDt">
+                                  <th mat-header-cell *matHeaderCellDef> Created Date </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.CreatedDt  | date}} </td>
+                                </ng-container>
+                                <!-- CreatedBy_String Column -->
+                                <ng-container matColumnDef="CreatedBy_String">
+                                  <th mat-header-cell *matHeaderCellDef> Bidder Name </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.CreatedBy_String}} </td>
+                                </ng-container>
+                                <!-- UpdatedBy_String Column -->
+                                <ng-container matColumnDef="UpdatedBy_String">
+                                  <th mat-header-cell *matHeaderCellDef> UpdatedBy_String </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.UpdatedBy_String}} </td>
+                                </ng-container>
+                                <!-- StatusDescription Column -->
+                                <ng-container matColumnDef="StatusDescription">
+                                  <th mat-header-cell *matHeaderCellDef> Bid Status </th>
+                                  <td mat-cell *matCellDef="let element"> {{element.StatusDescription}} </td>
+                                </ng-container>
+                                 <!-- Actions Column -->
+                                <ng-container matColumnDef="Actions">
+                                    <th mat-header-cell *matHeaderCellDef> Actions </th>
+                                    <td mat-cell *matCellDef="let element">
+                                            <span  *ngIf="(element.Status == 4 || element.Status == 5)">No actions pending</span>
+                                            <button mat-raised-button matTooltip="Approve" *ngIf="!IsAdmin && element.Status != 4 && element.Status != 5" 
+                                            type="button" (click)="approveBid(element)" class="btn btn-white btn-round btn-just-icon">
+                                                    <i class="material-icons">check_circle</i>
+                                            </button>
+                                            <button mat-raised-button matTooltip="Reject" *ngIf="!IsAdmin && element.Status != 4 && element.Status != 5" 
+                                            type="button" (click)="openBidRejectActionModal(element, bidrejectiontemplate)" class="btn btn-white btn-round btn-just-icon">
+                                                    <i class="material-icons">clear</i>
+                                            </button>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumnsBid"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumnsBid;"></tr>
+                              </table>                             
+  
+                            <mat-paginator [pageSizeOptions]="[3, 5, 20]" showFirstLastButtons></mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+  </ng-template>
+  
+  
+<ng-template #bidrejectiontemplate>      
+  <div class="mod">        
+  <div class="col-md-12">
+          <div class="card">
+              <div class="card-header card-header-danger">
+                  <h4 class="card-title">Bid Info</h4>
+                  <p class="card-category">Bid Rejection Reason</p>
+              </div>
+              <div class="card-body">                       
+                      <div class="row">
+                          <div class="col-md-12">
+                                  <mat-form-field class="example-full-width">
+                                          <textarea matInput placeholder="Bid Rejection Reason" 
+                                          [(ngModel)]="bidRejectionReason" ></textarea>
+                                  </mat-form-field>
+                          </div>            
+                      </div>
+                      <button mat-raised-button type="button" class="btn btn-danger pull-right" (click)="rejectBid()">Reject Bid</button>
+                      <button mat-raised-button type="button" class="btn btn-danger pull-right" (click)="cancelBidRejection()">Cancel</button>
+                      <div class="clearfix"></div>                        
+              </div>
+          </div>
+      </div>
+  </div>
+</ng-template>

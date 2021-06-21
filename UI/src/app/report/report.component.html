@@ -1,0 +1,108 @@
+
+
+<div class="main-content" >
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-warning card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">supervised_user_circle</i>
+                            </div>
+                            <p class="card-category">List of registered users</p>
+                            </div>
+                            <div class="col-lg-8 col-md-10 col-sm-10">
+                                
+                            <mat-form-field appearance="">
+                                    <mat-label>Start date</mat-label>
+                                    <input matInput [matDatepicker]="picker" [(ngModel)]="userListFromDate">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field> 
+                            <mat-form-field appearance="">
+                                        <mat-label>End date</mat-label>
+                                        <input matInput [matDatepicker]="picker1" [(ngModel)]="userListToDate">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                            </div>
+                                    <button mat-raised-button type="button" class="btn btn-danger pull-right" (click)="getUsers()">Download</button> 
+                       
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-success card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">bar_chart</i>
+                            </div>
+                            <p class="card-category">Sales report</p>
+                       </div>
+                         <div class="col-lg-8 col-md-10 col-sm-10">
+                                
+                            <mat-form-field appearance="">
+                                    <mat-label>Start date</mat-label>
+                                    <input matInput [matDatepicker]="pickerSales">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerSales"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerSales></mat-datepicker>
+                            </mat-form-field> 
+                            <mat-form-field appearance="">
+                                        <mat-label>End date</mat-label>
+                                        <input matInput [matDatepicker]="pickerSales1">
+                                        <mat-datepicker-toggle matSuffix [for]="pickerSales1"></mat-datepicker-toggle>
+                                        <mat-datepicker #pickerSales1></mat-datepicker>
+                            </mat-form-field>
+                            </div>
+                            <button mat-raised-button type="button" class="btn btn-danger pull-right" (click)="getSaleReport()" >Download</button> 
+                       
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-danger card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">addchart</i>
+                            </div>
+                            <p class="card-category">Purchase report</p>
+                        </div>
+                        <div class="col-lg-8 col-md-10 col-sm-10">
+                                
+                                <mat-form-field appearance="">
+                                        <mat-label>Start date</mat-label>
+                                        <input matInput [matDatepicker]="pickerPurchase">
+                                        <mat-datepicker-toggle matSuffix [for]="pickerPurchase"></mat-datepicker-toggle>
+                                        <mat-datepicker #pickerPurchase></mat-datepicker>
+                                </mat-form-field> 
+                                <mat-form-field appearance="">
+                                            <mat-label>End date</mat-label>
+                                            <input matInput [matDatepicker]="pickerPurchase1">
+                                            <mat-datepicker-toggle matSuffix [for]="pickerPurchase1"></mat-datepicker-toggle>
+                                            <mat-datepicker #pickerPurchase1></mat-datepicker>
+                                </mat-form-field>
+                        </div>
+                        <button mat-raised-button type="button" class="btn btn-danger pull-right" (click)="getPurchaseReport()" >Download</button> 
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-danger card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">supervised_user_circle </i>
+                                </div>
+                                <p class="card-category">Shareholder List</p>
+                               <br>
+                            </div>
+                            
+                             <button mat-raised-button type="button" class="btn btn-danger pull-right" (click)="getShareholderList()">Download</button> 
+    
+                        </div>
+                    </div>
+            </div>
+            </div>
+            </div>
+
+
+
+
+

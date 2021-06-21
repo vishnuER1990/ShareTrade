@@ -1,0 +1,85 @@
+<!-- <div class="main-content"> -->
+    <!-- <div class="container-fluid"> -->
+        <form class="example-form" [formGroup]="formGroup">
+                <div class="col-lg-4 col-md-2 col-sm-2">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-warning card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">supervised_user_circle</i>
+                                </div>
+                                <p class="card-category">Quorum Report</p>
+                                </div>
+                                <div class="col-lg-8 col-md-10 col-sm-10">
+                                </div>
+                            <button mat-raised-button type="button" class="btn btn-danger pull-right" (click)="getShareholderData()">Download</button> 
+                           
+                        </div>
+                    </div>           
+        </form>
+        <div class="row">
+            <div class="col-lg-4 col-md-2 col-sm-2">
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">content_copy</i>
+                        </div>
+                        <p class="card-category">Personally attended</p>
+                        <circle-progress [title]="personallyAttendedTitle" [percent]=personallyAttended [radius]="70"
+                            [outerStrokeWidth]="16" [innerStrokeWidth]="8" [outerStrokeColor]="'#78C000'"
+                            [innerStrokeColor]="'#C7E596'" [animation]="true" [showUnits]="false" [showSubtitle]="false"
+                            [animationDuration]="300">
+                        </circle-progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-2 col-sm-2">
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">content_copy</i>
+                        </div>
+                        <p class="card-category">Provided proxy</p>
+                        <circle-progress [title]="providedProxyTitle" [percent]=providedProxy [radius]="70"
+                            [outerStrokeWidth]="16" [innerStrokeWidth]="8" [outerStrokeColor]="'#78C000'"
+                            [innerStrokeColor]="'#C7E596'" [animation]="true" [showUnits]="false" [showSubtitle]="false"
+                            [animationDuration]="300">
+                        </circle-progress>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-2 col-sm-2">
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">content_copy</i>
+                        </div>
+                        <p class="card-category">Total attendance</p>
+                        <circle-progress [title]="totalAttendanceTitle" [percent]=totalAttendance [radius]="70"
+                            [outerStrokeWidth]="16" [innerStrokeWidth]="8" [outerStrokeColor]="'#78C000'"
+                            [innerStrokeColor]="'#C7E596'" [animation]="true" [showUnits]="false" [showSubtitle]="false"
+                            [animationDuration]="300">
+                        </circle-progress>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+           
+            <div class="col-lg-5 col-md-2 col-sm-2">
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">content_copy</i>
+                        </div>
+                        <p class="card-category">Total Quorum</p>
+                        <circle-progress [percent]=totalQuorum [radius]="100"
+                            [outerStrokeWidth]="16" [innerStrokeWidth]="8" [outerStrokeColor]="'#78C000'"
+                            [innerStrokeColor]="'#C7E596'" [animation]="true" [showSubtitle]="false"
+                            [animationDuration]="300">
+                        </circle-progress>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- </div> -->
+<!-- </div> -->

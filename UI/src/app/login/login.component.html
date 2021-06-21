@@ -1,0 +1,97 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" 
+type = "square-loader" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V2</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form">
+					<span class="login100-form-title p-b-26">
+						Welcome
+					</span>
+					<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
+
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="text" name="Username" [(ngModel)]="userName" placeholder="Enter UserName">
+					</div>
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" type="password" name="pass" [(ngModel)]="password" placeholder="Enter Password" >
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" (click)="checkCredentials()">
+								Login
+							</button>
+						</div>
+					</div>
+
+					<div class="text-center p-t-115">
+						<span class="txt1" >
+							Don’t have an account?
+						</span> 
+						<span class="txt1Link" (click)="signup()">
+							Sign Up
+						</span>
+					</div>
+
+					<div class=" text-center">
+							<span class="txt1" >
+								Forgot your password ?
+							</span>
+							<span class="txt1Link" (click)="openForgotPasswordModal(ForgotPasswordTemplate)">
+								Click here
+							</span>
+						</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<ng-template #ErrorTemplate>
+			<button type="button" class="close pull-right" style="padding-left: 469px;" aria-label="Close" (click)="modalRef.hide()">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+		<div class="container-login100-Popup">
+			<p>{{errorTemplateMsg}}</p>
+		</div> 
+
+  </ng-template>
+
+  <ng-template #ForgotPasswordTemplate>
+		<button type="button" class="close pull-right" style="padding-left: 469px;" aria-label="Close" (click)="closeForgotModal()">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			  <div id="forgotModal" class="modal-body text-center">
+			  <form class="login100-form validate-form">
+					<span class="login100-form-title p-b-26">
+						Forgot Password
+					</span>
+
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="text" name="Username" [(ngModel)]="userNamePopup" placeholder="Enter UserName">
+					</div>
+					<button type="button" class="btn btn-default" (click)="forgotPassword()" >Okay</button>
+			 </form>
+			</div>
+
+</ng-template>
+
+
+</body>
+</html>
