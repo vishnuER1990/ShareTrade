@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShareTradeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Certificates">
+    <Key>
+      <PropertyRef Name="CertificateId" />
+    </Key>
+    <Property Name="CertificateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Path" Type="varchar" MaxLength="500" />
+    <Property Name="UploadedDt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Email_Template">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category" Type="varchar" MaxLength="50" />
+    <Property Name="Content" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Error_Log">
+    <Key>
+      <PropertyRef Name="ErrorId" />
+    </Key>
+    <Property Name="ErrorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ErrorDescription" Type="varchar(max)" />
+    <Property Name="CreatedDt" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Proposal_Details">
+    <Key>
+      <PropertyRef Name="ProposalId" />
+    </Key>
+    <Property Name="ProposalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleId" Type="bigint" />
+    <Property Name="BidPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="BidUnit" Type="bigint" />
+    <Property Name="CreatedDt" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedDt" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="Status" Type="int" />
+    <Property Name="StatusComments" Type="varchar" MaxLength="300" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Proposal_Status">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusDescription" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Purchase_Interest_Notification">
+    <Key>
+      <PropertyRef Name="NotificationId" />
+    </Key>
+    <Property Name="NotificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Share" Type="bigint" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="QID_Details">
+    <Key>
+      <PropertyRef Name="DetailsId" />
+    </Key>
+    <Property Name="DetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QID" Type="varbinary" MaxLength="50" Nullable="false" />
+    <Property Name="ShareDescription" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ShareAvailable" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sale_Details">
+    <Key>
+      <PropertyRef Name="SaleId" />
+    </Key>
+    <Property Name="SaleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShareDetailsId" Type="int" />
+    <Property Name="NumberOfShares" Type="bigint" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="SaleRemarks" Type="varchar" MaxLength="300" />
+    <Property Name="CreatedDt" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedDt" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="Status" Type="int" />
+    <Property Name="StatusComments" Type="varchar" MaxLength="300" />
+    <Property Name="ValidTo" Type="date" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsNegotiable" Type="bit" />
+  </EntityType>
+  <EntityType Name="Sale_Status">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusDescription" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Share_Details">
+    <Key>
+      <PropertyRef Name="ShareDetailsId" />
+    </Key>
+    <Property Name="ShareDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="QID" Type="varchar" MaxLength="100" />
+    <Property Name="ShareholderID" Type="bigint" />
+    <Property Name="AvailableShares" Type="bigint" />
+    <Property Name="Description" Type="varchar" MaxLength="300" />
+    <Property Name="UniqueID" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedDt" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedDt" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDt" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedDt" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsAdmin" Type="bit" />
+    <Property Name="IsAdminApproved" Type="bit" />
+  </EntityType>
+  <EntityType Name="User_Info">
+    <Key>
+      <PropertyRef Name="UserInfoId" />
+    </Key>
+    <Property Name="UserInfoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="First_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Last_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email_Address" Type="nvarchar" MaxLength="100" />
+    <Property Name="Contact_Number" Type="nvarchar" MaxLength="100" />
+    <Property Name="QID_Number" Type="nvarchar" MaxLength="100" />
+    <Property Name="Shareholder_ID" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ShareTrade.dbo.vw_User_info' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_User_info">
+    <Key>
+      <PropertyRef Name="UserInfoId" />
+    </Key>
+    <Property Name="UserInfoId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="IsAdmin" Type="bit" />
+    <Property Name="First_Name" Type="varchar" MaxLength="100" />
+    <Property Name="Last_Name" Type="varchar" MaxLength="100" />
+    <Property Name="Full_Name" Type="varchar" MaxLength="201" />
+    <Property Name="Email_Address" Type="varchar" MaxLength="100" />
+    <Property Name="Contact_Number" Type="varchar" MaxLength="100" />
+    <Property Name="QID_Number" Type="varchar" MaxLength="100" />
+    <Property Name="Shareholder_ID" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedDt" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedDt" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsAdminApproved" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Proposal_Details_Proposal_Status">
+    <End Role="Proposal_Status" Type="Self.Proposal_Status" Multiplicity="0..1" />
+    <End Role="Proposal_Details" Type="Self.Proposal_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proposal_Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Proposal_Details">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proposal_Details_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Proposal_Details" Type="Self.Proposal_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Proposal_Details">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proposal_Details_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Proposal_Details" Type="Self.Proposal_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Proposal_Details">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Share_Details_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Share_Details" Type="Self.Share_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Share_Details">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Share_Details_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Share_Details" Type="Self.Share_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Share_Details">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Info_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="User_Info" Type="Self.User_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="User_Info">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Approve_Bid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BidID" Type="int" Mode="In" />
+    <Parameter Name="SaleID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_BidDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Bid_Id" Type="int" Mode="In" />
+    <Parameter Name="CreatedBy" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_BidDetails_Report" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_Certificates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_EmailContent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="ProposalId" Type="int" Mode="In" />
+    <Parameter Name="SaleId" Type="int" Mode="In" />
+    <Parameter Name="Category" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_Purchase_Interest_Notification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_Quorum" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_SaleBidDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SaleId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_SaleDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Sale_Id" Type="int" Mode="In" />
+    <Parameter Name="CreatedBy" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_SaleDetails_Report" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Get_SaleDetails_v1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Sale_Id" Type="int" Mode="In" />
+    <Parameter Name="CreatedBy" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_ShareDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShareId" Type="int" Mode="In" />
+    <Parameter Name="CreatedBy" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_ShareSaleDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Application_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_Summary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_Summary_BidReceived" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_Summary_BidSubmitted" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_UserList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userName" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ShareTradeModelStoreContainer">
+    <EntitySet Name="Certificates" EntityType="Self.Certificates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Email_Template" EntityType="Self.Email_Template" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Error_Log" EntityType="Self.Error_Log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proposal_Details" EntityType="Self.Proposal_Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proposal_Status" EntityType="Self.Proposal_Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Purchase_Interest_Notification" EntityType="Self.Purchase_Interest_Notification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QID_Details" EntityType="Self.QID_Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sale_Details" EntityType="Self.Sale_Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sale_Status" EntityType="Self.Sale_Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Share_Details" EntityType="Self.Share_Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_Info" EntityType="Self.User_Info" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_User_info" EntityType="Self.vw_User_info" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_User_info].[UserInfoId] AS [UserInfoId], 
+    [vw_User_info].[UserId] AS [UserId], 
+    [vw_User_info].[UserName] AS [UserName], 
+    [vw_User_info].[Password] AS [Password], 
+    [vw_User_info].[IsAdmin] AS [IsAdmin], 
+    [vw_User_info].[First_Name] AS [First_Name], 
+    [vw_User_info].[Last_Name] AS [Last_Name], 
+    [vw_User_info].[Full_Name] AS [Full_Name], 
+    [vw_User_info].[Email_Address] AS [Email_Address], 
+    [vw_User_info].[Contact_Number] AS [Contact_Number], 
+    [vw_User_info].[QID_Number] AS [QID_Number], 
+    [vw_User_info].[Shareholder_ID] AS [Shareholder_ID], 
+    [vw_User_info].[CreatedDt] AS [CreatedDt], 
+    [vw_User_info].[CreatedBy] AS [CreatedBy], 
+    [vw_User_info].[UpdatedDt] AS [UpdatedDt], 
+    [vw_User_info].[UpdatedBy] AS [UpdatedBy], 
+    [vw_User_info].[IsActive] AS [IsActive], 
+    [vw_User_info].[IsAdminApproved] AS [IsAdminApproved]
+    FROM [dbo].[vw_User_info] AS [vw_User_info]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Proposal_Details_Proposal_Status" Association="Self.FK_Proposal_Details_Proposal_Status">
+      <End Role="Proposal_Status" EntitySet="Proposal_Status" />
+      <End Role="Proposal_Details" EntitySet="Proposal_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proposal_Details_User" Association="Self.FK_Proposal_Details_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Proposal_Details" EntitySet="Proposal_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proposal_Details_User1" Association="Self.FK_Proposal_Details_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Proposal_Details" EntitySet="Proposal_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Share_Details_User" Association="Self.FK_Share_Details_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Share_Details" EntitySet="Share_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Share_Details_User1" Association="Self.FK_Share_Details_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Share_Details" EntitySet="Share_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Info_User" Association="Self.FK_User_Info_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="User_Info" EntitySet="User_Info" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

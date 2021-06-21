@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ShareTradeModelStoreContainer" CdmEntityContainer="ShareTradeEntities">
+    <EntitySetMapping Name="Email_Template">
+      <EntityTypeMapping TypeName="ShareTradeModel.Email_Template">
+        <MappingFragment StoreEntitySet="Email_Template">
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Error_Log">
+      <EntityTypeMapping TypeName="ShareTradeModel.Error_Log">
+        <MappingFragment StoreEntitySet="Error_Log">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+          <ScalarProperty Name="ErrorDescription" ColumnName="ErrorDescription" />
+          <ScalarProperty Name="ErrorId" ColumnName="ErrorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proposal_Details">
+      <EntityTypeMapping TypeName="ShareTradeModel.Proposal_Details">
+        <MappingFragment StoreEntitySet="Proposal_Details">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="StatusComments" ColumnName="StatusComments" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+          <ScalarProperty Name="BidUnit" ColumnName="BidUnit" />
+          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+          <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+          <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proposal_Status">
+      <EntityTypeMapping TypeName="ShareTradeModel.Proposal_Status">
+        <MappingFragment StoreEntitySet="Proposal_Status">
+          <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QID_Details">
+      <EntityTypeMapping TypeName="ShareTradeModel.QID_Details">
+        <MappingFragment StoreEntitySet="QID_Details">
+          <ScalarProperty Name="ShareAvailable" ColumnName="ShareAvailable" />
+          <ScalarProperty Name="ShareDescription" ColumnName="ShareDescription" />
+          <ScalarProperty Name="QID" ColumnName="QID" />
+          <ScalarProperty Name="DetailsId" ColumnName="DetailsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sale_Status">
+      <EntityTypeMapping TypeName="ShareTradeModel.Sale_Status">
+        <MappingFragment StoreEntitySet="Sale_Status">
+          <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Info">
+      <EntityTypeMapping TypeName="ShareTradeModel.User_Info">
+        <MappingFragment StoreEntitySet="User_Info">
+          <ScalarProperty Name="Shareholder_ID" ColumnName="Shareholder_ID" />
+          <ScalarProperty Name="QID_Number" ColumnName="QID_Number" />
+          <ScalarProperty Name="Contact_Number" ColumnName="Contact_Number" />
+          <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_User_info">
+      <EntityTypeMapping TypeName="ShareTradeModel.vw_User_info">
+        <MappingFragment StoreEntitySet="vw_User_info">
+          <ScalarProperty Name="IsAdminApproved" ColumnName="IsAdminApproved" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+          <ScalarProperty Name="Shareholder_ID" ColumnName="Shareholder_ID" />
+          <ScalarProperty Name="QID_Number" ColumnName="QID_Number" />
+          <ScalarProperty Name="Contact_Number" ColumnName="Contact_Number" />
+          <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+          <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Approve_Bid" FunctionName="ShareTradeModel.Store.Approve_Bid" />
+    <FunctionImportMapping FunctionImportName="Get_EmailContent" FunctionName="ShareTradeModel.Store.Get_EmailContent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_EmailContent_Result">
+          <ScalarProperty Name="EmailContent" ColumnName="EmailContent" />
+          <ScalarProperty Name="ToAddress" ColumnName="ToAddress" />
+          <ScalarProperty Name="EmailSubject" ColumnName="EmailSubject" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_SaleDetails_v1" FunctionName="ShareTradeModel.Store.Get_SaleDetails_v1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_SaleDetails_v1_Result">
+          <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+          <ScalarProperty Name="ShareDetailsId" ColumnName="ShareDetailsId" />
+          <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+          <ScalarProperty Name="SaleRemarks" ColumnName="SaleRemarks" />
+          <ScalarProperty Name="NumberOfShares" ColumnName="NumberOfShares" />
+          <ScalarProperty Name="ShareUnitPrice" ColumnName="ShareUnitPrice" />
+          <ScalarProperty Name="ApplicationStatus" ColumnName="ApplicationStatus" />
+          <ScalarProperty Name="ApplicationStatusComments" ColumnName="ApplicationStatusComments" />
+          <ScalarProperty Name="AvailableShares" ColumnName="AvailableShares" />
+          <ScalarProperty Name="ShareDescription" ColumnName="ShareDescription" />
+          <ScalarProperty Name="SaleCreatedDt" ColumnName="SaleCreatedDt" />
+          <ScalarProperty Name="SaleUpdatedDt" ColumnName="SaleUpdatedDt" />
+          <ScalarProperty Name="ShareCreatedDt" ColumnName="ShareCreatedDt" />
+          <ScalarProperty Name="SaleCreatedBy" ColumnName="SaleCreatedBy" />
+          <ScalarProperty Name="SaleUpdatedBy" ColumnName="SaleUpdatedBy" />
+          <ScalarProperty Name="ShareCreatedBy" ColumnName="ShareCreatedBy" />
+          <ScalarProperty Name="BidCount" ColumnName="BidCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_BidDetails" FunctionName="ShareTradeModel.Store.Get_BidDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_BidDetails_Result">
+          <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+          <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+          <ScalarProperty Name="BidUnit" ColumnName="BidUnit" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+          <ScalarProperty Name="StatusComments" ColumnName="StatusComments" />
+          <ScalarProperty Name="BidCreatedDt" ColumnName="BidCreatedDt" />
+          <ScalarProperty Name="BidUpdatedDt" ColumnName="BidUpdatedDt" />
+          <ScalarProperty Name="BidCreatedBy" ColumnName="BidCreatedBy" />
+          <ScalarProperty Name="BidUpdatedBy" ColumnName="BidUpdatedBy" />
+          <ScalarProperty Name="ShareDescription" ColumnName="ShareDescription" />
+          <ScalarProperty Name="ShareholderContactNumber" ColumnName="ShareholderContactNumber" />
+          <ScalarProperty Name="Seller" ColumnName="Seller" />
+          <ScalarProperty Name="Buyer" ColumnName="Buyer" />
+          <ScalarProperty Name="SellerAvailableShares" ColumnName="SellerAvailableShares" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_Summary" FunctionName="ShareTradeModel.Store.Get_Summary">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_Summary_Result">
+          <ScalarProperty Name="QID" ColumnName="QID" />
+          <ScalarProperty Name="AvailableShares" ColumnName="AvailableShares" />
+          <ScalarProperty Name="SaleRegisteredForSale" ColumnName="SaleRegisteredForSale" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_Summary_BidSubmitted" FunctionName="ShareTradeModel.Store.Get_Summary_BidSubmitted">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_Summary_BidSubmitted_Result">
+          <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+          <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+          <ScalarProperty Name="BidUnit" ColumnName="BidUnit" />
+          <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+          <ScalarProperty Name="StatusComments" ColumnName="StatusComments" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ShareHolderName" ColumnName="ShareHolderName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Share_Details">
+      <EntityTypeMapping TypeName="ShareTradeModel.Share_Details">
+        <MappingFragment StoreEntitySet="Share_Details">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+          <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AvailableShares" ColumnName="AvailableShares" />
+          <ScalarProperty Name="ShareholderID" ColumnName="ShareholderID" />
+          <ScalarProperty Name="QID" ColumnName="QID" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ShareDetailsId" ColumnName="ShareDetailsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Get_ShareDetails" FunctionName="ShareTradeModel.Store.Get_ShareDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_ShareDetails_Result">
+          <ScalarProperty Name="ShareDetailsId" ColumnName="ShareDetailsId" />
+          <ScalarProperty Name="AvailableShares" ColumnName="AvailableShares" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="QID" ColumnName="QID" />
+          <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ShareholderID" ColumnName="ShareholderID" />
+          <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="ShareCreatedBy" ColumnName="ShareCreatedBy" />
+          <ScalarProperty Name="ShareUpdatedBy" ColumnName="ShareUpdatedBy" />
+          <ScalarProperty Name="AssignedUser" ColumnName="AssignedUser" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Certificates">
+      <EntityTypeMapping TypeName="ShareTradeModel.Certificates">
+        <MappingFragment StoreEntitySet="Certificates">
+          <ScalarProperty Name="UploadedDt" ColumnName="UploadedDt" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CertificateId" ColumnName="CertificateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Get_Certificates" FunctionName="ShareTradeModel.Store.Get_Certificates">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_Certificates_Result">
+          <ScalarProperty Name="CertificateId" ColumnName="CertificateId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="UploadedDt" ColumnName="UploadedDt" />
+          <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_Purchase_Interest_Notification" FunctionName="ShareTradeModel.Store.Get_Purchase_Interest_Notification">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_Purchase_Interest_Notification_Result">
+          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+          <ScalarProperty Name="NotificationText" ColumnName="NotificationText" />
+          <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="ShareTradeModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="IsAdminApproved" ColumnName="IsAdminApproved" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sale_Details">
+      <EntityTypeMapping TypeName="ShareTradeModel.Sale_Details">
+        <MappingFragment StoreEntitySet="Sale_Details">
+          <ScalarProperty Name="IsNegotiable" ColumnName="IsNegotiable" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+          <ScalarProperty Name="StatusComments" ColumnName="StatusComments" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+          <ScalarProperty Name="SaleRemarks" ColumnName="SaleRemarks" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="NumberOfShares" ColumnName="NumberOfShares" />
+          <ScalarProperty Name="ShareDetailsId" ColumnName="ShareDetailsId" />
+          <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Get_SaleBidDetails" FunctionName="ShareTradeModel.Store.Get_SaleBidDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_SaleBidDetails_Result">
+          <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+          <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+          <ScalarProperty Name="BidUnit" ColumnName="BidUnit" />
+          <ScalarProperty Name="NumberOfShares" ColumnName="NumberOfShares" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+          <ScalarProperty Name="ShareDescription" ColumnName="ShareDescription" />
+          <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+          <ScalarProperty Name="StatusComments" ColumnName="StatusComments" />
+          <ScalarProperty Name="CreatedBy_string" ColumnName="CreatedBy_string" />
+          <ScalarProperty Name="UpdatedBy_string" ColumnName="UpdatedBy_string" />
+          <ScalarProperty Name="ShareholderContactNumber" ColumnName="ShareholderContactNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_SaleDetails" FunctionName="ShareTradeModel.Store.Get_SaleDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_SaleDetails_Result">
+          <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+          <ScalarProperty Name="ShareDetailsId" ColumnName="ShareDetailsId" />
+          <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+          <ScalarProperty Name="SaleRemarks" ColumnName="SaleRemarks" />
+          <ScalarProperty Name="NumberOfShares" ColumnName="NumberOfShares" />
+          <ScalarProperty Name="ShareUnitPrice" ColumnName="ShareUnitPrice" />
+          <ScalarProperty Name="ApplicationStatus" ColumnName="ApplicationStatus" />
+          <ScalarProperty Name="ApplicationStatusComments" ColumnName="ApplicationStatusComments" />
+          <ScalarProperty Name="IsNegotiable" ColumnName="IsNegotiable" />
+          <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+          <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+          <ScalarProperty Name="AvailableShares" ColumnName="AvailableShares" />
+          <ScalarProperty Name="ShareDescription" ColumnName="ShareDescription" />
+          <ScalarProperty Name="SaleCreatedDt" ColumnName="SaleCreatedDt" />
+          <ScalarProperty Name="SaleUpdatedDt" ColumnName="SaleUpdatedDt" />
+          <ScalarProperty Name="ShareCreatedDt" ColumnName="ShareCreatedDt" />
+          <ScalarProperty Name="SaleCreatedBy" ColumnName="SaleCreatedBy" />
+          <ScalarProperty Name="SellerContactNumber" ColumnName="SellerContactNumber" />
+          <ScalarProperty Name="SaleUpdatedBy" ColumnName="SaleUpdatedBy" />
+          <ScalarProperty Name="ShareCreatedBy" ColumnName="ShareCreatedBy" />
+          <ScalarProperty Name="BidCount" ColumnName="BidCount" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="ShareholderContactNumber" ColumnName="ShareholderContactNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_ShareSaleDetails" FunctionName="ShareTradeModel.Store.Get_ShareSaleDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_ShareSaleDetails_Result">
+          <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+          <ScalarProperty Name="ShareDetailsId" ColumnName="ShareDetailsId" />
+          <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+          <ScalarProperty Name="ApplicationRemarks" ColumnName="ApplicationRemarks" />
+          <ScalarProperty Name="NumberOfShares" ColumnName="NumberOfShares" />
+          <ScalarProperty Name="ShareUnitPrice" ColumnName="ShareUnitPrice" />
+          <ScalarProperty Name="ShareDescription" ColumnName="ShareDescription" />
+          <ScalarProperty Name="ApplicationStatus" ColumnName="ApplicationStatus" />
+          <ScalarProperty Name="ApplicationStatusComments" ColumnName="ApplicationStatusComments" />
+          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+          <ScalarProperty Name="BidUnit" ColumnName="BidUnit" />
+          <ScalarProperty Name="BidStatus" ColumnName="BidStatus" />
+          <ScalarProperty Name="BidStatusComments" ColumnName="BidStatusComments" />
+          <ScalarProperty Name="SaleCreatedDt" ColumnName="SaleCreatedDt" />
+          <ScalarProperty Name="SaleUpdatedDt" ColumnName="SaleUpdatedDt" />
+          <ScalarProperty Name="ShareCreatedDt" ColumnName="ShareCreatedDt" />
+          <ScalarProperty Name="ProposalCreatedDt" ColumnName="ProposalCreatedDt" />
+          <ScalarProperty Name="SaleCreatedBy" ColumnName="SaleCreatedBy" />
+          <ScalarProperty Name="SaleUpdatedBy" ColumnName="SaleUpdatedBy" />
+          <ScalarProperty Name="ShareCreatedBy" ColumnName="ShareCreatedBy" />
+          <ScalarProperty Name="ProposalCreatedBy" ColumnName="ProposalCreatedBy" />
+          <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_Summary_BidReceived" FunctionName="ShareTradeModel.Store.Get_Summary_BidReceived">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_Summary_BidReceived_Result">
+          <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+          <ScalarProperty Name="ShareDetailsId" ColumnName="ShareDetailsId" />
+          <ScalarProperty Name="NumberOfShares" ColumnName="NumberOfShares" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="SaleRemarks" ColumnName="SaleRemarks" />
+          <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StatusComments" ColumnName="StatusComments" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+          <ScalarProperty Name="BidderName" ColumnName="BidderName" />
+          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+          <ScalarProperty Name="BidderContactNumber" ColumnName="BidderContactNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Purchase_Interest_Notification">
+      <EntityTypeMapping TypeName="ShareTradeModel.Purchase_Interest_Notification">
+        <MappingFragment StoreEntitySet="Purchase_Interest_Notification">
+          <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Share" ColumnName="Share" />
+          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Get_UserList" FunctionName="ShareTradeModel.Store.Get_UserList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_UserList_Result">
+          <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+          <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+          <ScalarProperty Name="Contact_Number" ColumnName="Contact_Number" />
+          <ScalarProperty Name="QID_Number" ColumnName="QID_Number" />
+          <ScalarProperty Name="Shareholder_ID" ColumnName="Shareholder_ID" />
+          <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy_Name" ColumnName="CreatedBy_Name" />
+          <ScalarProperty Name="UpdatedBy_Name" ColumnName="UpdatedBy_Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsAdminApproved" ColumnName="IsAdminApproved" />
+          <ScalarProperty Name="AvailableShares" ColumnName="AvailableShares" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_BidDetails_Report" FunctionName="ShareTradeModel.Store.Get_BidDetails_Report">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_BidDetails_Report_Result">
+          <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+          <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+          <ScalarProperty Name="BidUnit" ColumnName="BidUnit" />
+          <ScalarProperty Name="SaleUnitPrice" ColumnName="SaleUnitPrice" />
+          <ScalarProperty Name="BidStatus" ColumnName="BidStatus" />
+          <ScalarProperty Name="BidCreatedDate" ColumnName="BidCreatedDate" />
+          <ScalarProperty Name="BidUpdatedDate" ColumnName="BidUpdatedDate" />
+          <ScalarProperty Name="BidUpdatedBy" ColumnName="BidUpdatedBy" />
+          <ScalarProperty Name="Buyer" ColumnName="Buyer" />
+          <ScalarProperty Name="Seller" ColumnName="Seller" />
+          <ScalarProperty Name="SellerContactNumber" ColumnName="SellerContactNumber" />
+          <ScalarProperty Name="SellerAvailableShares" ColumnName="SellerAvailableShares" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_SaleDetails_Report" FunctionName="ShareTradeModel.Store.Get_SaleDetails_Report">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ShareTradeModel.Get_SaleDetails_Report_Result">
+          <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+          <ScalarProperty Name="NumberOfShares" ColumnName="NumberOfShares" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="PriceNegotiable" ColumnName="PriceNegotiable" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="SaleStatus" ColumnName="SaleStatus" />
+          <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+          <ScalarProperty Name="SaleCreatedDate" ColumnName="SaleCreatedDate" />
+          <ScalarProperty Name="SaleUpdatedDate" ColumnName="SaleUpdatedDate" />
+          <ScalarProperty Name="Seller" ColumnName="Seller" />
+          <ScalarProperty Name="SellerContactNumber" ColumnName="SellerContactNumber" />
+          <ScalarProperty Name="BidCount" ColumnName="BidCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

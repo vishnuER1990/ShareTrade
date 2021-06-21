@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShareTradeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ShareTradeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Email_Template" EntityType="ShareTradeModel.Email_Template" />
+    <EntitySet Name="Error_Log" EntityType="ShareTradeModel.Error_Log" />
+    <EntitySet Name="Proposal_Details" EntityType="ShareTradeModel.Proposal_Details" />
+    <EntitySet Name="Proposal_Status" EntityType="ShareTradeModel.Proposal_Status" />
+    <EntitySet Name="QID_Details" EntityType="ShareTradeModel.QID_Details" />
+    <EntitySet Name="Sale_Status" EntityType="ShareTradeModel.Sale_Status" />
+    <EntitySet Name="vw_User_info" EntityType="ShareTradeModel.vw_User_info" />
+    <AssociationSet Name="FK_Proposal_Details_Proposal_Status" Association="ShareTradeModel.FK_Proposal_Details_Proposal_Status">
+      <End Role="Proposal_Status" EntitySet="Proposal_Status" />
+      <End Role="Proposal_Details" EntitySet="Proposal_Details" />
+    </AssociationSet>
+    <FunctionImport Name="Approve_Bid">
+      <Parameter Name="BidID" Mode="In" Type="Int32" />
+      <Parameter Name="SaleID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_EmailContent" ReturnType="Collection(ShareTradeModel.Get_EmailContent_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="ProposalId" Mode="In" Type="Int32" />
+      <Parameter Name="SaleId" Mode="In" Type="Int32" />
+      <Parameter Name="Category" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_SaleDetails_v1" ReturnType="Collection(ShareTradeModel.Get_SaleDetails_v1_Result)">
+      <Parameter Name="Sale_Id" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedBy" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_BidDetails" ReturnType="Collection(ShareTradeModel.Get_BidDetails_Result)">
+      <Parameter Name="Bid_Id" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedBy" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Summary" ReturnType="Collection(ShareTradeModel.Get_Summary_Result)">
+      <Parameter Name="userId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Summary_BidSubmitted" ReturnType="Collection(ShareTradeModel.Get_Summary_BidSubmitted_Result)">
+      <Parameter Name="userID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Share_Details" EntityType="ShareTradeModel.Share_Details" />
+    <FunctionImport Name="Get_ShareDetails" ReturnType="Collection(ShareTradeModel.Get_ShareDetails_Result)">
+      <Parameter Name="ShareId" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedBy" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Certificates" EntityType="ShareTradeModel.Certificates" />
+    <FunctionImport Name="Get_Certificates" ReturnType="Collection(ShareTradeModel.Get_Certificates_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Purchase_Interest_Notification" ReturnType="Collection(ShareTradeModel.Get_Purchase_Interest_Notification_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Sale_Details" EntityType="ShareTradeModel.Sale_Details" />
+    <FunctionImport Name="Get_SaleBidDetails" ReturnType="Collection(ShareTradeModel.Get_SaleBidDetails_Result)">
+      <Parameter Name="SaleId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_SaleDetails" ReturnType="Collection(ShareTradeModel.Get_SaleDetails_Result)">
+      <Parameter Name="Sale_Id" Mode="In" Type="Int32" />
+      <Parameter Name="CreatedBy" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_ShareSaleDetails" ReturnType="Collection(ShareTradeModel.Get_ShareSaleDetails_Result)">
+      <Parameter Name="Application_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Summary_BidReceived" ReturnType="Collection(ShareTradeModel.Get_Summary_BidReceived_Result)">
+      <Parameter Name="userID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Purchase_Interest_Notification" EntityType="ShareTradeModel.Purchase_Interest_Notification" />
+    <FunctionImport Name="Get_UserList" ReturnType="Collection(ShareTradeModel.Get_UserList_Result)">
+      <Parameter Name="userName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_BidDetails_Report" ReturnType="Collection(ShareTradeModel.Get_BidDetails_Report_Result)" />
+    <FunctionImport Name="Get_SaleDetails_Report" ReturnType="Collection(ShareTradeModel.Get_SaleDetails_Report_Result)" />
+    <EntitySet Name="User" EntityType="ShareTradeModel.User" />
+    <EntitySet Name="User_Info" EntityType="ShareTradeModel.User_Info" />
+    <AssociationSet Name="FK_Proposal_Details_User" Association="ShareTradeModel.FK_Proposal_Details_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Proposal_Details" EntitySet="Proposal_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proposal_Details_User1" Association="ShareTradeModel.FK_Proposal_Details_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Proposal_Details" EntitySet="Proposal_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Share_Details_User" Association="ShareTradeModel.FK_Share_Details_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Share_Details" EntitySet="Share_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Share_Details_User1" Association="ShareTradeModel.FK_Share_Details_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Share_Details" EntitySet="Share_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Info_User" Association="ShareTradeModel.FK_User_Info_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="User_Info" EntitySet="User_Info" />
+    </AssociationSet>
+    <FunctionImport Name="Get_Quorum" ReturnType="Collection(ShareTradeModel.Get_Quorum_Result)" />
+  </EntityContainer>
+  <EntityType Name="Email_Template">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Error_Log">
+    <Key>
+      <PropertyRef Name="ErrorId" />
+    </Key>
+    <Property Name="ErrorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ErrorDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Proposal_Details">
+    <Key>
+      <PropertyRef Name="ProposalId" />
+    </Key>
+    <Property Name="ProposalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaleId" Type="Int64" />
+    <Property Name="BidPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BidUnit" Type="Int64" />
+    <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="StatusComments" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Proposal_Status" Relationship="ShareTradeModel.FK_Proposal_Details_Proposal_Status" FromRole="Proposal_Details" ToRole="Proposal_Status" />
+    <NavigationProperty Name="User" Relationship="ShareTradeModel.FK_Proposal_Details_User" FromRole="Proposal_Details" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="ShareTradeModel.FK_Proposal_Details_User1" FromRole="Proposal_Details" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Proposal_Status">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Proposal_Details" Relationship="ShareTradeModel.FK_Proposal_Details_Proposal_Status" FromRole="Proposal_Status" ToRole="Proposal_Details" />
+  </EntityType>
+  <EntityType Name="QID_Details">
+    <Key>
+      <PropertyRef Name="DetailsId" />
+    </Key>
+    <Property Name="DetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QID" Type="Binary" Nullable="false" MaxLength="50" FixedLength="false" />
+    <Property Name="ShareDescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ShareAvailable" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sale_Status">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vw_User_info">
+    <Key>
+      <PropertyRef Name="UserInfoId" />
+    </Key>
+    <Property Name="UserInfoId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsAdmin" Type="Boolean" />
+    <Property Name="First_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Full_Name" Type="String" MaxLength="201" FixedLength="false" Unicode="false" />
+    <Property Name="Email_Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="QID_Number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Shareholder_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsAdminApproved" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_Proposal_Details_Proposal_Status">
+    <End Type="ShareTradeModel.Proposal_Status" Role="Proposal_Status" Multiplicity="0..1" />
+    <End Type="ShareTradeModel.Proposal_Details" Role="Proposal_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proposal_Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Proposal_Details">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="Get_EmailContent_Result">
+    <Property Type="String" Name="EmailContent" Nullable="true" />
+    <Property Type="String" Name="ToAddress" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="EmailSubject" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="Get_SaleDetails_v1_Result">
+    <Property Type="Int32" Name="SaleId" Nullable="false" />
+    <Property Type="Int32" Name="ShareDetailsId" Nullable="true" />
+    <Property Type="Int32" Name="ProposalId" Nullable="false" />
+    <Property Type="String" Name="SaleRemarks" Nullable="true" MaxLength="300" />
+    <Property Type="Int64" Name="NumberOfShares" Nullable="true" />
+    <Property Type="Decimal" Name="ShareUnitPrice" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="ApplicationStatus" Nullable="true" />
+    <Property Type="String" Name="ApplicationStatusComments" Nullable="true" MaxLength="300" />
+    <Property Type="Int64" Name="AvailableShares" Nullable="true" />
+    <Property Type="String" Name="ShareDescription" Nullable="true" MaxLength="300" />
+    <Property Type="DateTime" Name="SaleCreatedDt" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="SaleUpdatedDt" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ShareCreatedDt" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SaleCreatedBy" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SaleUpdatedBy" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="ShareCreatedBy" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="BidCount" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Get_BidDetails_Result">
+    <Property Type="Int32" Name="ProposalId" Nullable="false" />
+    <Property Type="Int64" Name="SaleId" Nullable="true" />
+    <Property Type="Decimal" Name="BidPrice" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int64" Name="BidUnit" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="StatusDescription" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="StatusComments" Nullable="true" MaxLength="300" />
+    <Property Type="DateTime" Name="BidCreatedDt" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="BidUpdatedDt" Nullable="true" Precision="23" />
+    <Property Type="String" Name="BidCreatedBy" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="BidUpdatedBy" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="ShareDescription" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="ShareholderContactNumber" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Seller" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Buyer" Nullable="true" MaxLength="200" />
+    <Property Type="Int64" Name="SellerAvailableShares" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_Summary_Result">
+    <Property Type="Int64" Name="QID" Nullable="true" />
+    <Property Type="Int64" Name="AvailableShares" Nullable="true" />
+    <Property Type="Int64" Name="SaleRegisteredForSale" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_Summary_BidSubmitted_Result">
+    <Property Type="Int32" Name="ProposalId" Nullable="false" />
+    <Property Type="Int64" Name="SaleId" Nullable="true" />
+    <Property Type="Decimal" Name="BidPrice" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int64" Name="BidUnit" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDt" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+    <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+    <Property Type="String" Name="StatusDescription" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="StatusComments" Nullable="true" MaxLength="300" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="String" Name="ShareHolderName" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <EntityType Name="Share_Details">
+    <Key>
+      <PropertyRef Name="ShareDetailsId" />
+    </Key>
+    <Property Name="ShareDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="QID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ShareholderID" Type="Int64" />
+    <Property Name="AvailableShares" Type="Int64" />
+    <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="UniqueID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="User" Relationship="ShareTradeModel.FK_Share_Details_User" FromRole="Share_Details" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="ShareTradeModel.FK_Share_Details_User1" FromRole="Share_Details" ToRole="User" />
+  </EntityType>
+  <ComplexType Name="Get_ShareDetails_Result">
+    <Property Type="Int32" Name="ShareDetailsId" Nullable="false" />
+    <Property Type="Int64" Name="AvailableShares" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="QID" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UniqueID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="300" />
+    <Property Type="Int64" Name="ShareholderID" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDt" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+    <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+    <Property Type="String" Name="ShareCreatedBy" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="ShareUpdatedBy" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="AssignedUser" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <EntityType Name="Certificates">
+    <Key>
+      <PropertyRef Name="CertificateId" />
+    </Key>
+    <Property Name="CertificateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="UploadedDt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <ComplexType Name="Get_Certificates_Result">
+    <Property Type="Int32" Name="CertificateId" Nullable="false" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="Path" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="UploadedDt" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Full_Name" Nullable="true" MaxLength="201" />
+  </ComplexType>
+  <ComplexType Name="Get_Purchase_Interest_Notification_Result">
+    <Property Type="Int32" Name="NotificationId" Nullable="false" />
+    <Property Type="String" Name="NotificationText" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDt" Nullable="true" Precision="23" />
+  </ComplexType>
+  <EntityType Name="Sale_Details">
+    <Key>
+      <PropertyRef Name="SaleId" />
+    </Key>
+    <Property Name="SaleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShareDetailsId" Type="Int32" />
+    <Property Name="NumberOfShares" Type="Int64" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SaleRemarks" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="StatusComments" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="ValidTo" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsNegotiable" Type="Boolean" />
+  </EntityType>
+  <ComplexType Name="Get_SaleBidDetails_Result">
+    <Property Type="Int32" Name="ProposalId" Nullable="false" />
+    <Property Type="Int64" Name="SaleId" Nullable="true" />
+    <Property Type="Decimal" Name="BidPrice" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int64" Name="BidUnit" Nullable="true" />
+    <Property Type="Int64" Name="NumberOfShares" Nullable="true" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="DateTime" Name="ValidTo" Nullable="true" />
+    <Property Type="String" Name="ShareDescription" Nullable="true" MaxLength="300" />
+    <Property Type="DateTime" Name="CreatedDt" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+    <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="StatusDescription" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="StatusComments" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="CreatedBy_string" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="UpdatedBy_string" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="ShareholderContactNumber" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="Get_SaleDetails_Result">
+    <Property Type="Int32" Name="SaleId" Nullable="false" />
+    <Property Type="Int32" Name="ShareDetailsId" Nullable="true" />
+    <Property Type="Int32" Name="ProposalId" Nullable="false" />
+    <Property Type="String" Name="SaleRemarks" Nullable="true" MaxLength="300" />
+    <Property Type="Int64" Name="NumberOfShares" Nullable="true" />
+    <Property Type="Decimal" Name="ShareUnitPrice" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="ApplicationStatus" Nullable="true" />
+    <Property Type="String" Name="ApplicationStatusComments" Nullable="true" MaxLength="300" />
+    <Property Type="Boolean" Name="IsNegotiable" Nullable="true" />
+    <Property Type="DateTime" Name="ValidTo" Nullable="true" />
+    <Property Type="String" Name="StatusDescription" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="AvailableShares" Nullable="true" />
+    <Property Type="String" Name="ShareDescription" Nullable="true" MaxLength="300" />
+    <Property Type="DateTime" Name="SaleCreatedDt" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="SaleUpdatedDt" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ShareCreatedDt" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SaleCreatedBy" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="SellerContactNumber" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SaleUpdatedBy" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="ShareCreatedBy" Nullable="true" MaxLength="201" />
+    <Property Type="Int32" Name="BidCount" Nullable="false" />
+    <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+    <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+    <Property Type="String" Name="ShareholderContactNumber" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="Get_ShareSaleDetails_Result">
+    <Property Type="Int32" Name="SaleId" Nullable="false" />
+    <Property Type="Int32" Name="ShareDetailsId" Nullable="false" />
+    <Property Type="Int32" Name="ProposalId" Nullable="true" />
+    <Property Type="String" Name="ApplicationRemarks" Nullable="true" MaxLength="300" />
+    <Property Type="Int64" Name="NumberOfShares" Nullable="true" />
+    <Property Type="Decimal" Name="ShareUnitPrice" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="ShareDescription" Nullable="true" MaxLength="300" />
+    <Property Type="Int32" Name="ApplicationStatus" Nullable="true" />
+    <Property Type="String" Name="ApplicationStatusComments" Nullable="true" MaxLength="300" />
+    <Property Type="Decimal" Name="BidPrice" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int64" Name="BidUnit" Nullable="true" />
+    <Property Type="Int32" Name="BidStatus" Nullable="true" />
+    <Property Type="String" Name="BidStatusComments" Nullable="true" MaxLength="300" />
+    <Property Type="DateTime" Name="SaleCreatedDt" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="SaleUpdatedDt" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ShareCreatedDt" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="ProposalCreatedDt" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SaleCreatedBy" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="SaleUpdatedBy" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="ShareCreatedBy" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="ProposalCreatedBy" Nullable="true" MaxLength="201" />
+    <Property Type="DateTime" Name="ValidTo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_Summary_BidReceived_Result">
+    <Property Type="Int32" Name="SaleId" Nullable="false" />
+    <Property Type="Int32" Name="ShareDetailsId" Nullable="true" />
+    <Property Type="Int64" Name="NumberOfShares" Nullable="true" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="SaleRemarks" Nullable="true" MaxLength="300" />
+    <Property Type="DateTime" Name="CreatedDt" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+    <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="StatusComments" Nullable="true" MaxLength="300" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="DateTime" Name="ValidTo" Nullable="true" />
+    <Property Type="String" Name="BidderName" Nullable="true" MaxLength="201" />
+    <Property Type="Decimal" Name="BidPrice" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="BidderContactNumber" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="Purchase_Interest_Notification">
+    <Key>
+      <PropertyRef Name="NotificationId" />
+    </Key>
+    <Property Name="NotificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Share" Type="Int64" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <ComplexType Name="Get_UserList_Result">
+    <Property Type="Int32" Name="UserInfoId" Nullable="false" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IsAdmin" Nullable="true" />
+    <Property Type="String" Name="First_Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Full_Name" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="Email_Address" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Contact_Number" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="QID_Number" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Shareholder_ID" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="CreatedDt" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+    <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+    <Property Type="String" Name="CreatedBy_Name" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="UpdatedBy_Name" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="Boolean" Name="IsAdminApproved" Nullable="true" />
+    <Property Type="Int32" Name="AvailableShares" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Get_BidDetails_Report_Result">
+    <Property Type="Int64" Name="SaleId" Nullable="true" />
+    <Property Type="Int32" Name="ProposalId" Nullable="false" />
+    <Property Type="Decimal" Name="BidPrice" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int64" Name="BidUnit" Nullable="true" />
+    <Property Type="Decimal" Name="SaleUnitPrice" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="BidStatus" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="BidCreatedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="BidUpdatedDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="BidUpdatedBy" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="Buyer" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="Seller" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="SellerContactNumber" Nullable="true" MaxLength="30" />
+    <Property Type="Int64" Name="SellerAvailableShares" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_SaleDetails_Report_Result">
+    <Property Type="Int32" Name="SaleId" Nullable="false" />
+    <Property Type="Int64" Name="NumberOfShares" Nullable="true" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Boolean" Name="PriceNegotiable" Nullable="true" />
+    <Property Type="DateTime" Name="ExpiryDate" Nullable="true" />
+    <Property Type="String" Name="SaleStatus" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="StatusDescription" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="SaleCreatedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="SaleUpdatedDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Seller" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="SellerContactNumber" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="BidCount" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsAdmin" Type="Boolean" />
+    <Property Name="IsAdminApproved" Type="Boolean" />
+    <NavigationProperty Name="Proposal_Details" Relationship="ShareTradeModel.FK_Proposal_Details_User" FromRole="User" ToRole="Proposal_Details" />
+    <NavigationProperty Name="Proposal_Details1" Relationship="ShareTradeModel.FK_Proposal_Details_User1" FromRole="User" ToRole="Proposal_Details" />
+    <NavigationProperty Name="Share_Details" Relationship="ShareTradeModel.FK_Share_Details_User" FromRole="User" ToRole="Share_Details" />
+    <NavigationProperty Name="Share_Details1" Relationship="ShareTradeModel.FK_Share_Details_User1" FromRole="User" ToRole="Share_Details" />
+    <NavigationProperty Name="User_Info" Relationship="ShareTradeModel.FK_User_Info_User" FromRole="User" ToRole="User_Info" />
+  </EntityType>
+  <EntityType Name="User_Info">
+    <Key>
+      <PropertyRef Name="UserInfoId" />
+    </Key>
+    <Property Name="UserInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="First_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email_Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Contact_Number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="QID_Number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Shareholder_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="ShareTradeModel.FK_User_Info_User" FromRole="User_Info" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Proposal_Details_User">
+    <End Type="ShareTradeModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ShareTradeModel.Proposal_Details" Role="Proposal_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Proposal_Details">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proposal_Details_User1">
+    <End Type="ShareTradeModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ShareTradeModel.Proposal_Details" Role="Proposal_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Proposal_Details">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Share_Details_User">
+    <End Type="ShareTradeModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ShareTradeModel.Share_Details" Role="Share_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Share_Details">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Share_Details_User1">
+    <End Type="ShareTradeModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ShareTradeModel.Share_Details" Role="Share_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Share_Details">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Info_User">
+    <End Type="ShareTradeModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="ShareTradeModel.User_Info" Role="User_Info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="User_Info">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="Get_Quorum_Result">
+    <Property Type="Int32" Name="ProvidedProxy" Nullable="true" />
+    <Property Type="Int32" Name="PersonallyAttended" Nullable="true" />
+    <Property Type="Int32" Name="TotalAttendance" Nullable="true" />
+    <Property Type="String" Name="Quorum" Nullable="true" MaxLength="100" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,12 @@
+C:\Vishnu\PersonalTech\Simcorn\ShareTrade\ST.API\Interfaces\bin\Debug\Interfaces.dll
+C:\Vishnu\PersonalTech\Simcorn\ShareTrade\ST.API\Interfaces\bin\Debug\Interfaces.pdb
+C:\Vishnu\PersonalTech\Simcorn\ShareTrade\ST.API\Interfaces\bin\Debug\Entity.dll
+C:\Vishnu\PersonalTech\Simcorn\ShareTrade\ST.API\Interfaces\bin\Debug\EntityFramework.dll
+C:\Vishnu\PersonalTech\Simcorn\ShareTrade\ST.API\Interfaces\bin\Debug\Entity.pdb
+C:\Vishnu\PersonalTech\Simcorn\ShareTrade\ST.API\Interfaces\bin\Debug\Entity.dll.config
+C:\Vishnu\PersonalTech\Simcorn\ShareTrade\ST.API\Interfaces\bin\Debug\EntityFramework.xml
+C:\Vishnu\PersonalTech\Simcorn\ShareTrade\ST.API\Interfaces\obj\Debug\Interfaces.csprojAssemblyReference.cache
+C:\Vishnu\PersonalTech\Simcorn\ShareTrade\ST.API\Interfaces\obj\Debug\Interfaces.csproj.CoreCompileInputs.cache
+C:\Vishnu\PersonalTech\Simcorn\ShareTrade\ST.API\Interfaces\obj\Debug\Interfaces.csproj.CopyComplete
+C:\Vishnu\PersonalTech\Simcorn\ShareTrade\ST.API\Interfaces\obj\Debug\Interfaces.dll
+C:\Vishnu\PersonalTech\Simcorn\ShareTrade\ST.API\Interfaces\obj\Debug\Interfaces.pdb

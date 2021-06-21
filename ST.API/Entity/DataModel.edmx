@@ -1,0 +1,1440 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ShareTradeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Certificates">
+          <Key>
+            <PropertyRef Name="CertificateId" />
+          </Key>
+          <Property Name="CertificateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Path" Type="varchar" MaxLength="500" />
+          <Property Name="UploadedDt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Email_Template">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="50" />
+          <Property Name="Content" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Error_Log">
+          <Key>
+            <PropertyRef Name="ErrorId" />
+          </Key>
+          <Property Name="ErrorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ErrorDescription" Type="varchar(max)" />
+          <Property Name="CreatedDt" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Proposal_Details">
+          <Key>
+            <PropertyRef Name="ProposalId" />
+          </Key>
+          <Property Name="ProposalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaleId" Type="bigint" />
+          <Property Name="BidPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BidUnit" Type="bigint" />
+          <Property Name="CreatedDt" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="UpdatedDt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="StatusComments" Type="varchar" MaxLength="300" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Proposal_Status">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusDescription" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Purchase_Interest_Notification">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Share" Type="bigint" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="QID_Details">
+          <Key>
+            <PropertyRef Name="DetailsId" />
+          </Key>
+          <Property Name="DetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QID" Type="varbinary" MaxLength="50" Nullable="false" />
+          <Property Name="ShareDescription" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShareAvailable" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sale_Details">
+          <Key>
+            <PropertyRef Name="SaleId" />
+          </Key>
+          <Property Name="SaleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShareDetailsId" Type="int" />
+          <Property Name="NumberOfShares" Type="bigint" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SaleRemarks" Type="varchar" MaxLength="300" />
+          <Property Name="CreatedDt" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="UpdatedDt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="StatusComments" Type="varchar" MaxLength="300" />
+          <Property Name="ValidTo" Type="date" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsNegotiable" Type="bit" />
+        </EntityType>
+        <EntityType Name="Sale_Status">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusDescription" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Share_Details">
+          <Key>
+            <PropertyRef Name="ShareDetailsId" />
+          </Key>
+          <Property Name="ShareDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="QID" Type="varchar" MaxLength="100" />
+          <Property Name="ShareholderID" Type="bigint" />
+          <Property Name="AvailableShares" Type="bigint" />
+          <Property Name="Description" Type="varchar" MaxLength="300" />
+          <Property Name="UniqueID" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDt" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="UpdatedDt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDt" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="UpdatedDt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="IsAdminApproved" Type="bit" />
+        </EntityType>
+        <EntityType Name="User_Info">
+          <Key>
+            <PropertyRef Name="UserInfoId" />
+          </Key>
+          <Property Name="UserInfoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="First_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Last_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email_Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Contact_Number" Type="nvarchar" MaxLength="100" />
+          <Property Name="QID_Number" Type="nvarchar" MaxLength="100" />
+          <Property Name="Shareholder_ID" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ShareTrade.dbo.vw_User_info' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_User_info">
+          <Key>
+            <PropertyRef Name="UserInfoId" />
+          </Key>
+          <Property Name="UserInfoId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="First_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Last_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Full_Name" Type="varchar" MaxLength="201" />
+          <Property Name="Email_Address" Type="varchar" MaxLength="100" />
+          <Property Name="Contact_Number" Type="varchar" MaxLength="100" />
+          <Property Name="QID_Number" Type="varchar" MaxLength="100" />
+          <Property Name="Shareholder_ID" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedDt" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="UpdatedDt" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsAdminApproved" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Proposal_Details_Proposal_Status">
+          <End Role="Proposal_Status" Type="Self.Proposal_Status" Multiplicity="0..1" />
+          <End Role="Proposal_Details" Type="Self.Proposal_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proposal_Status">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Proposal_Details">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proposal_Details_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Proposal_Details" Type="Self.Proposal_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Proposal_Details">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proposal_Details_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Proposal_Details" Type="Self.Proposal_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Proposal_Details">
+              <PropertyRef Name="UpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Share_Details_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Share_Details" Type="Self.Share_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Share_Details">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Share_Details_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Share_Details" Type="Self.Share_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Share_Details">
+              <PropertyRef Name="UpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Info_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="User_Info" Type="Self.User_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="User_Info">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Approve_Bid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BidID" Type="int" Mode="In" />
+          <Parameter Name="SaleID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_BidDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Bid_Id" Type="int" Mode="In" />
+          <Parameter Name="CreatedBy" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_BidDetails_Report" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Get_Certificates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_EmailContent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="ProposalId" Type="int" Mode="In" />
+          <Parameter Name="SaleId" Type="int" Mode="In" />
+          <Parameter Name="Category" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Get_Purchase_Interest_Notification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_Quorum" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Get_SaleBidDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SaleId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_SaleDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Sale_Id" Type="int" Mode="In" />
+          <Parameter Name="CreatedBy" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_SaleDetails_Report" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Get_SaleDetails_v1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Sale_Id" Type="int" Mode="In" />
+          <Parameter Name="CreatedBy" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_ShareDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShareId" Type="int" Mode="In" />
+          <Parameter Name="CreatedBy" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_ShareSaleDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Application_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_Summary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_Summary_BidReceived" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_Summary_BidSubmitted" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_UserList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userName" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ShareTradeModelStoreContainer">
+          <EntitySet Name="Certificates" EntityType="Self.Certificates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Email_Template" EntityType="Self.Email_Template" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Error_Log" EntityType="Self.Error_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proposal_Details" EntityType="Self.Proposal_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proposal_Status" EntityType="Self.Proposal_Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchase_Interest_Notification" EntityType="Self.Purchase_Interest_Notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QID_Details" EntityType="Self.QID_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sale_Details" EntityType="Self.Sale_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sale_Status" EntityType="Self.Sale_Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Share_Details" EntityType="Self.Share_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Info" EntityType="Self.User_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_User_info" EntityType="Self.vw_User_info" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_User_info].[UserInfoId] AS [UserInfoId], 
+    [vw_User_info].[UserId] AS [UserId], 
+    [vw_User_info].[UserName] AS [UserName], 
+    [vw_User_info].[Password] AS [Password], 
+    [vw_User_info].[IsAdmin] AS [IsAdmin], 
+    [vw_User_info].[First_Name] AS [First_Name], 
+    [vw_User_info].[Last_Name] AS [Last_Name], 
+    [vw_User_info].[Full_Name] AS [Full_Name], 
+    [vw_User_info].[Email_Address] AS [Email_Address], 
+    [vw_User_info].[Contact_Number] AS [Contact_Number], 
+    [vw_User_info].[QID_Number] AS [QID_Number], 
+    [vw_User_info].[Shareholder_ID] AS [Shareholder_ID], 
+    [vw_User_info].[CreatedDt] AS [CreatedDt], 
+    [vw_User_info].[CreatedBy] AS [CreatedBy], 
+    [vw_User_info].[UpdatedDt] AS [UpdatedDt], 
+    [vw_User_info].[UpdatedBy] AS [UpdatedBy], 
+    [vw_User_info].[IsActive] AS [IsActive], 
+    [vw_User_info].[IsAdminApproved] AS [IsAdminApproved]
+    FROM [dbo].[vw_User_info] AS [vw_User_info]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Proposal_Details_Proposal_Status" Association="Self.FK_Proposal_Details_Proposal_Status">
+            <End Role="Proposal_Status" EntitySet="Proposal_Status" />
+            <End Role="Proposal_Details" EntitySet="Proposal_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proposal_Details_User" Association="Self.FK_Proposal_Details_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Proposal_Details" EntitySet="Proposal_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proposal_Details_User1" Association="Self.FK_Proposal_Details_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Proposal_Details" EntitySet="Proposal_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Share_Details_User" Association="Self.FK_Share_Details_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Share_Details" EntitySet="Share_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Share_Details_User1" Association="Self.FK_Share_Details_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Share_Details" EntitySet="Share_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Info_User" Association="Self.FK_User_Info_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="User_Info" EntitySet="User_Info" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShareTradeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ShareTradeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Email_Template" EntityType="ShareTradeModel.Email_Template" />
+          <EntitySet Name="Error_Log" EntityType="ShareTradeModel.Error_Log" />
+          <EntitySet Name="Proposal_Details" EntityType="ShareTradeModel.Proposal_Details" />
+          <EntitySet Name="Proposal_Status" EntityType="ShareTradeModel.Proposal_Status" />
+          <EntitySet Name="QID_Details" EntityType="ShareTradeModel.QID_Details" />
+          <EntitySet Name="Sale_Status" EntityType="ShareTradeModel.Sale_Status" />
+          <EntitySet Name="vw_User_info" EntityType="ShareTradeModel.vw_User_info" />
+          <AssociationSet Name="FK_Proposal_Details_Proposal_Status" Association="ShareTradeModel.FK_Proposal_Details_Proposal_Status">
+            <End Role="Proposal_Status" EntitySet="Proposal_Status" />
+            <End Role="Proposal_Details" EntitySet="Proposal_Details" />
+          </AssociationSet>
+          <FunctionImport Name="Approve_Bid">
+            <Parameter Name="BidID" Mode="In" Type="Int32" />
+            <Parameter Name="SaleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Get_EmailContent" ReturnType="Collection(ShareTradeModel.Get_EmailContent_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="ProposalId" Mode="In" Type="Int32" />
+            <Parameter Name="SaleId" Mode="In" Type="Int32" />
+            <Parameter Name="Category" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get_SaleDetails_v1" ReturnType="Collection(ShareTradeModel.Get_SaleDetails_v1_Result)">
+            <Parameter Name="Sale_Id" Mode="In" Type="Int32" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Get_BidDetails" ReturnType="Collection(ShareTradeModel.Get_BidDetails_Result)">
+            <Parameter Name="Bid_Id" Mode="In" Type="Int32" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Get_Summary" ReturnType="Collection(ShareTradeModel.Get_Summary_Result)">
+          <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Get_Summary_BidSubmitted" ReturnType="Collection(ShareTradeModel.Get_Summary_BidSubmitted_Result)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Share_Details" EntityType="ShareTradeModel.Share_Details" />
+          <FunctionImport Name="Get_ShareDetails" ReturnType="Collection(ShareTradeModel.Get_ShareDetails_Result)">
+            <Parameter Name="ShareId" Mode="In" Type="Int32" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Certificates" EntityType="ShareTradeModel.Certificates" />
+          <FunctionImport Name="Get_Certificates" ReturnType="Collection(ShareTradeModel.Get_Certificates_Result)">
+          <Parameter Name="UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Get_Purchase_Interest_Notification" ReturnType="Collection(ShareTradeModel.Get_Purchase_Interest_Notification_Result)">
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Sale_Details" EntityType="ShareTradeModel.Sale_Details" />
+          <FunctionImport Name="Get_SaleBidDetails" ReturnType="Collection(ShareTradeModel.Get_SaleBidDetails_Result)">
+          <Parameter Name="SaleId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Get_SaleDetails" ReturnType="Collection(ShareTradeModel.Get_SaleDetails_Result)">
+            <Parameter Name="Sale_Id" Mode="In" Type="Int32" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Get_ShareSaleDetails" ReturnType="Collection(ShareTradeModel.Get_ShareSaleDetails_Result)">
+          <Parameter Name="Application_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Get_Summary_BidReceived" ReturnType="Collection(ShareTradeModel.Get_Summary_BidReceived_Result)">
+          <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Purchase_Interest_Notification" EntityType="ShareTradeModel.Purchase_Interest_Notification" />
+          <FunctionImport Name="Get_UserList" ReturnType="Collection(ShareTradeModel.Get_UserList_Result)">
+            <Parameter Name="userName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get_BidDetails_Report" ReturnType="Collection(ShareTradeModel.Get_BidDetails_Report_Result)" />
+          <FunctionImport Name="Get_SaleDetails_Report" ReturnType="Collection(ShareTradeModel.Get_SaleDetails_Report_Result)" />
+          <EntitySet Name="User" EntityType="ShareTradeModel.User" />
+          <EntitySet Name="User_Info" EntityType="ShareTradeModel.User_Info" />
+          <AssociationSet Name="FK_Proposal_Details_User" Association="ShareTradeModel.FK_Proposal_Details_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Proposal_Details" EntitySet="Proposal_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proposal_Details_User1" Association="ShareTradeModel.FK_Proposal_Details_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Proposal_Details" EntitySet="Proposal_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Share_Details_User" Association="ShareTradeModel.FK_Share_Details_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Share_Details" EntitySet="Share_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Share_Details_User1" Association="ShareTradeModel.FK_Share_Details_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Share_Details" EntitySet="Share_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Info_User" Association="ShareTradeModel.FK_User_Info_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="User_Info" EntitySet="User_Info" />
+          </AssociationSet>
+          <FunctionImport Name="Get_Quorum" ReturnType="Collection(ShareTradeModel.Get_Quorum_Result)" />
+        </EntityContainer>
+        <EntityType Name="Email_Template">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Error_Log">
+          <Key>
+            <PropertyRef Name="ErrorId" />
+          </Key>
+          <Property Name="ErrorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ErrorDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Proposal_Details">
+          <Key>
+            <PropertyRef Name="ProposalId" />
+          </Key>
+          <Property Name="ProposalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaleId" Type="Int64" />
+          <Property Name="BidPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BidUnit" Type="Int64" />
+          <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="StatusComments" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Proposal_Status" Relationship="ShareTradeModel.FK_Proposal_Details_Proposal_Status" FromRole="Proposal_Details" ToRole="Proposal_Status" />
+          <NavigationProperty Name="User" Relationship="ShareTradeModel.FK_Proposal_Details_User" FromRole="Proposal_Details" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="ShareTradeModel.FK_Proposal_Details_User1" FromRole="Proposal_Details" ToRole="User" />
+          </EntityType>
+        <EntityType Name="Proposal_Status">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Proposal_Details" Relationship="ShareTradeModel.FK_Proposal_Details_Proposal_Status" FromRole="Proposal_Status" ToRole="Proposal_Details" />
+        </EntityType>
+        <EntityType Name="QID_Details">
+          <Key>
+            <PropertyRef Name="DetailsId" />
+          </Key>
+          <Property Name="DetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QID" Type="Binary" Nullable="false" MaxLength="50" FixedLength="false" />
+          <Property Name="ShareDescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShareAvailable" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sale_Status">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_User_info">
+          <Key>
+            <PropertyRef Name="UserInfoId" />
+          </Key>
+          <Property Name="UserInfoId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="First_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Full_Name" Type="String" MaxLength="201" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_Number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="QID_Number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Shareholder_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsAdminApproved" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Proposal_Details_Proposal_Status">
+          <End Type="ShareTradeModel.Proposal_Status" Role="Proposal_Status" Multiplicity="0..1" />
+          <End Type="ShareTradeModel.Proposal_Details" Role="Proposal_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proposal_Status">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Proposal_Details">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Get_EmailContent_Result">
+          <Property Type="String" Name="EmailContent" Nullable="true" />
+          <Property Type="String" Name="ToAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="EmailSubject" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="Get_SaleDetails_v1_Result">
+          <Property Type="Int32" Name="SaleId" Nullable="false" />
+          <Property Type="Int32" Name="ShareDetailsId" Nullable="true" />
+          <Property Type="Int32" Name="ProposalId" Nullable="false" />
+          <Property Type="String" Name="SaleRemarks" Nullable="true" MaxLength="300" />
+          <Property Type="Int64" Name="NumberOfShares" Nullable="true" />
+          <Property Type="Decimal" Name="ShareUnitPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="ApplicationStatus" Nullable="true" />
+          <Property Type="String" Name="ApplicationStatusComments" Nullable="true" MaxLength="300" />
+          <Property Type="Int64" Name="AvailableShares" Nullable="true" />
+          <Property Type="String" Name="ShareDescription" Nullable="true" MaxLength="300" />
+          <Property Type="DateTime" Name="SaleCreatedDt" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="SaleUpdatedDt" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ShareCreatedDt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SaleCreatedBy" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="SaleUpdatedBy" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ShareCreatedBy" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="BidCount" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Get_BidDetails_Result">
+          <Property Type="Int32" Name="ProposalId" Nullable="false" />
+          <Property Type="Int64" Name="SaleId" Nullable="true" />
+          <Property Type="Decimal" Name="BidPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int64" Name="BidUnit" Nullable="true" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+          <Property Type="String" Name="StatusDescription" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="StatusComments" Nullable="true" MaxLength="300" />
+          <Property Type="DateTime" Name="BidCreatedDt" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="BidUpdatedDt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="BidCreatedBy" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="BidUpdatedBy" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ShareDescription" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="ShareholderContactNumber" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Seller" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Buyer" Nullable="true" MaxLength="200" />
+          <Property Type="Int64" Name="SellerAvailableShares" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Get_Summary_Result">
+          <Property Type="Int64" Name="QID" Nullable="true" />
+          <Property Type="Int64" Name="AvailableShares" Nullable="true" />
+          <Property Type="Int64" Name="SaleRegisteredForSale" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Get_Summary_BidSubmitted_Result">
+          <Property Type="Int32" Name="ProposalId" Nullable="false" />
+          <Property Type="Int64" Name="SaleId" Nullable="true" />
+          <Property Type="Decimal" Name="BidPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int64" Name="BidUnit" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+          <Property Type="String" Name="StatusDescription" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="StatusComments" Nullable="true" MaxLength="300" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="ShareHolderName" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <EntityType Name="Share_Details">
+          <Key>
+            <PropertyRef Name="ShareDetailsId" />
+          </Key>
+          <Property Name="ShareDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="QID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ShareholderID" Type="Int64" />
+          <Property Name="AvailableShares" Type="Int64" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="UniqueID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="User" Relationship="ShareTradeModel.FK_Share_Details_User" FromRole="Share_Details" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="ShareTradeModel.FK_Share_Details_User1" FromRole="Share_Details" ToRole="User" />
+          </EntityType>
+        <ComplexType Name="Get_ShareDetails_Result">
+          <Property Type="Int32" Name="ShareDetailsId" Nullable="false" />
+          <Property Type="Int64" Name="AvailableShares" Nullable="true" />
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+          <Property Type="String" Name="QID" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="UniqueID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="300" />
+          <Property Type="Int64" Name="ShareholderID" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+          <Property Type="String" Name="ShareCreatedBy" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ShareUpdatedBy" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="AssignedUser" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <EntityType Name="Certificates">
+          <Key>
+            <PropertyRef Name="CertificateId" />
+          </Key>
+          <Property Name="CertificateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UploadedDt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="Get_Certificates_Result">
+          <Property Type="Int32" Name="CertificateId" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+          <Property Type="String" Name="Path" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="UploadedDt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Full_Name" Nullable="true" MaxLength="201" />
+        </ComplexType>
+        <ComplexType Name="Get_Purchase_Interest_Notification_Result">
+          <Property Type="Int32" Name="NotificationId" Nullable="false" />
+          <Property Type="String" Name="NotificationText" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDt" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="Sale_Details">
+          <Key>
+            <PropertyRef Name="SaleId" />
+          </Key>
+          <Property Name="SaleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShareDetailsId" Type="Int32" />
+          <Property Name="NumberOfShares" Type="Int64" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SaleRemarks" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="StatusComments" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="ValidTo" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsNegotiable" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="Get_SaleBidDetails_Result">
+          <Property Type="Int32" Name="ProposalId" Nullable="false" />
+          <Property Type="Int64" Name="SaleId" Nullable="true" />
+          <Property Type="Decimal" Name="BidPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int64" Name="BidUnit" Nullable="true" />
+          <Property Type="Int64" Name="NumberOfShares" Nullable="true" />
+          <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="ValidTo" Nullable="true" />
+          <Property Type="String" Name="ShareDescription" Nullable="true" MaxLength="300" />
+          <Property Type="DateTime" Name="CreatedDt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+          <Property Type="String" Name="StatusDescription" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="StatusComments" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CreatedBy_string" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="UpdatedBy_string" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="ShareholderContactNumber" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="Get_SaleDetails_Result">
+          <Property Type="Int32" Name="SaleId" Nullable="false" />
+          <Property Type="Int32" Name="ShareDetailsId" Nullable="true" />
+          <Property Type="Int32" Name="ProposalId" Nullable="false" />
+          <Property Type="String" Name="SaleRemarks" Nullable="true" MaxLength="300" />
+          <Property Type="Int64" Name="NumberOfShares" Nullable="true" />
+          <Property Type="Decimal" Name="ShareUnitPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="ApplicationStatus" Nullable="true" />
+          <Property Type="String" Name="ApplicationStatusComments" Nullable="true" MaxLength="300" />
+          <Property Type="Boolean" Name="IsNegotiable" Nullable="true" />
+          <Property Type="DateTime" Name="ValidTo" Nullable="true" />
+          <Property Type="String" Name="StatusDescription" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="AvailableShares" Nullable="true" />
+          <Property Type="String" Name="ShareDescription" Nullable="true" MaxLength="300" />
+          <Property Type="DateTime" Name="SaleCreatedDt" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="SaleUpdatedDt" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ShareCreatedDt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SaleCreatedBy" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="SellerContactNumber" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SaleUpdatedBy" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="ShareCreatedBy" Nullable="true" MaxLength="201" />
+          <Property Type="Int32" Name="BidCount" Nullable="false" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+          <Property Type="String" Name="ShareholderContactNumber" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="Get_ShareSaleDetails_Result">
+          <Property Type="Int32" Name="SaleId" Nullable="false" />
+          <Property Type="Int32" Name="ShareDetailsId" Nullable="false" />
+          <Property Type="Int32" Name="ProposalId" Nullable="true" />
+          <Property Type="String" Name="ApplicationRemarks" Nullable="true" MaxLength="300" />
+          <Property Type="Int64" Name="NumberOfShares" Nullable="true" />
+          <Property Type="Decimal" Name="ShareUnitPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="ShareDescription" Nullable="true" MaxLength="300" />
+          <Property Type="Int32" Name="ApplicationStatus" Nullable="true" />
+          <Property Type="String" Name="ApplicationStatusComments" Nullable="true" MaxLength="300" />
+          <Property Type="Decimal" Name="BidPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int64" Name="BidUnit" Nullable="true" />
+          <Property Type="Int32" Name="BidStatus" Nullable="true" />
+          <Property Type="String" Name="BidStatusComments" Nullable="true" MaxLength="300" />
+          <Property Type="DateTime" Name="SaleCreatedDt" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="SaleUpdatedDt" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ShareCreatedDt" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ProposalCreatedDt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SaleCreatedBy" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="SaleUpdatedBy" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="ShareCreatedBy" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="ProposalCreatedBy" Nullable="true" MaxLength="201" />
+          <Property Type="DateTime" Name="ValidTo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Get_Summary_BidReceived_Result">
+          <Property Type="Int32" Name="SaleId" Nullable="false" />
+          <Property Type="Int32" Name="ShareDetailsId" Nullable="true" />
+          <Property Type="Int64" Name="NumberOfShares" Nullable="true" />
+          <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="SaleRemarks" Nullable="true" MaxLength="300" />
+          <Property Type="DateTime" Name="CreatedDt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+          <Property Type="String" Name="StatusComments" Nullable="true" MaxLength="300" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="ValidTo" Nullable="true" />
+          <Property Type="String" Name="BidderName" Nullable="true" MaxLength="201" />
+          <Property Type="Decimal" Name="BidPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="BidderContactNumber" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="Purchase_Interest_Notification">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Share" Type="Int64" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="Get_UserList_Result">
+          <Property Type="Int32" Name="UserInfoId" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="true" />
+          <Property Type="String" Name="First_Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Full_Name" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="Email_Address" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Contact_Number" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="QID_Number" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Shareholder_ID" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedDt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedDt" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+          <Property Type="String" Name="CreatedBy_Name" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="UpdatedBy_Name" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Boolean" Name="IsAdminApproved" Nullable="true" />
+          <Property Type="Int32" Name="AvailableShares" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Get_BidDetails_Report_Result">
+          <Property Type="Int64" Name="SaleId" Nullable="true" />
+          <Property Type="Int32" Name="ProposalId" Nullable="false" />
+          <Property Type="Decimal" Name="BidPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int64" Name="BidUnit" Nullable="true" />
+          <Property Type="Decimal" Name="SaleUnitPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="BidStatus" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="BidCreatedDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="BidUpdatedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="BidUpdatedBy" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="Buyer" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="Seller" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="SellerContactNumber" Nullable="true" MaxLength="30" />
+          <Property Type="Int64" Name="SellerAvailableShares" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Get_SaleDetails_Report_Result">
+          <Property Type="Int32" Name="SaleId" Nullable="false" />
+          <Property Type="Int64" Name="NumberOfShares" Nullable="true" />
+          <Property Type="Decimal" Name="UnitPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Boolean" Name="PriceNegotiable" Nullable="true" />
+          <Property Type="DateTime" Name="ExpiryDate" Nullable="true" />
+          <Property Type="String" Name="SaleStatus" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="StatusDescription" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="SaleCreatedDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="SaleUpdatedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Seller" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="SellerContactNumber" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="BidCount" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="IsAdminApproved" Type="Boolean" />
+          <NavigationProperty Name="Proposal_Details" Relationship="ShareTradeModel.FK_Proposal_Details_User" FromRole="User" ToRole="Proposal_Details" />
+          <NavigationProperty Name="Proposal_Details1" Relationship="ShareTradeModel.FK_Proposal_Details_User1" FromRole="User" ToRole="Proposal_Details" />
+          <NavigationProperty Name="Share_Details" Relationship="ShareTradeModel.FK_Share_Details_User" FromRole="User" ToRole="Share_Details" />
+          <NavigationProperty Name="Share_Details1" Relationship="ShareTradeModel.FK_Share_Details_User1" FromRole="User" ToRole="Share_Details" />
+          <NavigationProperty Name="User_Info" Relationship="ShareTradeModel.FK_User_Info_User" FromRole="User" ToRole="User_Info" />
+        </EntityType>
+        <EntityType Name="User_Info">
+          <Key>
+            <PropertyRef Name="UserInfoId" />
+          </Key>
+          <Property Name="UserInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="First_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Last_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email_Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Contact_Number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QID_Number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Shareholder_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="ShareTradeModel.FK_User_Info_User" FromRole="User_Info" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Proposal_Details_User">
+          <End Type="ShareTradeModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="ShareTradeModel.Proposal_Details" Role="Proposal_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Proposal_Details">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proposal_Details_User1">
+          <End Type="ShareTradeModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="ShareTradeModel.Proposal_Details" Role="Proposal_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Proposal_Details">
+              <PropertyRef Name="UpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Share_Details_User">
+          <End Type="ShareTradeModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="ShareTradeModel.Share_Details" Role="Share_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Share_Details">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Share_Details_User1">
+          <End Type="ShareTradeModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="ShareTradeModel.Share_Details" Role="Share_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Share_Details">
+              <PropertyRef Name="UpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Info_User">
+          <End Type="ShareTradeModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="ShareTradeModel.User_Info" Role="User_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="User_Info">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Get_Quorum_Result">
+          <Property Type="Int32" Name="ProvidedProxy" Nullable="true" />
+          <Property Type="Int32" Name="PersonallyAttended" Nullable="true" />
+          <Property Type="Int32" Name="TotalAttendance" Nullable="true" />
+          <Property Type="String" Name="Quorum" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShareTradeModelStoreContainer" CdmEntityContainer="ShareTradeEntities">
+          <EntitySetMapping Name="Email_Template">
+            <EntityTypeMapping TypeName="ShareTradeModel.Email_Template">
+              <MappingFragment StoreEntitySet="Email_Template">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Error_Log">
+            <EntityTypeMapping TypeName="ShareTradeModel.Error_Log">
+              <MappingFragment StoreEntitySet="Error_Log">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="ErrorDescription" ColumnName="ErrorDescription" />
+                <ScalarProperty Name="ErrorId" ColumnName="ErrorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proposal_Details">
+            <EntityTypeMapping TypeName="ShareTradeModel.Proposal_Details">
+              <MappingFragment StoreEntitySet="Proposal_Details">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="StatusComments" ColumnName="StatusComments" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="BidUnit" ColumnName="BidUnit" />
+                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proposal_Status">
+            <EntityTypeMapping TypeName="ShareTradeModel.Proposal_Status">
+              <MappingFragment StoreEntitySet="Proposal_Status">
+                <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QID_Details">
+            <EntityTypeMapping TypeName="ShareTradeModel.QID_Details">
+              <MappingFragment StoreEntitySet="QID_Details">
+                <ScalarProperty Name="ShareAvailable" ColumnName="ShareAvailable" />
+                <ScalarProperty Name="ShareDescription" ColumnName="ShareDescription" />
+                <ScalarProperty Name="QID" ColumnName="QID" />
+                <ScalarProperty Name="DetailsId" ColumnName="DetailsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sale_Status">
+            <EntityTypeMapping TypeName="ShareTradeModel.Sale_Status">
+              <MappingFragment StoreEntitySet="Sale_Status">
+                <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_User_info">
+            <EntityTypeMapping TypeName="ShareTradeModel.vw_User_info">
+              <MappingFragment StoreEntitySet="vw_User_info">
+                <ScalarProperty Name="IsAdminApproved" ColumnName="IsAdminApproved" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="Shareholder_ID" ColumnName="Shareholder_ID" />
+                <ScalarProperty Name="QID_Number" ColumnName="QID_Number" />
+                <ScalarProperty Name="Contact_Number" ColumnName="Contact_Number" />
+                <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Approve_Bid" FunctionName="ShareTradeModel.Store.Approve_Bid" />
+          <FunctionImportMapping FunctionImportName="Get_EmailContent" FunctionName="ShareTradeModel.Store.Get_EmailContent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_EmailContent_Result">
+                <ScalarProperty Name="EmailContent" ColumnName="EmailContent" />
+                <ScalarProperty Name="ToAddress" ColumnName="ToAddress" />
+                <ScalarProperty Name="EmailSubject" ColumnName="EmailSubject" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_SaleDetails_v1" FunctionName="ShareTradeModel.Store.Get_SaleDetails_v1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_SaleDetails_v1_Result">
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="ShareDetailsId" ColumnName="ShareDetailsId" />
+                <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+                <ScalarProperty Name="SaleRemarks" ColumnName="SaleRemarks" />
+                <ScalarProperty Name="NumberOfShares" ColumnName="NumberOfShares" />
+                <ScalarProperty Name="ShareUnitPrice" ColumnName="ShareUnitPrice" />
+                <ScalarProperty Name="ApplicationStatus" ColumnName="ApplicationStatus" />
+                <ScalarProperty Name="ApplicationStatusComments" ColumnName="ApplicationStatusComments" />
+                <ScalarProperty Name="AvailableShares" ColumnName="AvailableShares" />
+                <ScalarProperty Name="ShareDescription" ColumnName="ShareDescription" />
+                <ScalarProperty Name="SaleCreatedDt" ColumnName="SaleCreatedDt" />
+                <ScalarProperty Name="SaleUpdatedDt" ColumnName="SaleUpdatedDt" />
+                <ScalarProperty Name="ShareCreatedDt" ColumnName="ShareCreatedDt" />
+                <ScalarProperty Name="SaleCreatedBy" ColumnName="SaleCreatedBy" />
+                <ScalarProperty Name="SaleUpdatedBy" ColumnName="SaleUpdatedBy" />
+                <ScalarProperty Name="ShareCreatedBy" ColumnName="ShareCreatedBy" />
+                <ScalarProperty Name="BidCount" ColumnName="BidCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_BidDetails" FunctionName="ShareTradeModel.Store.Get_BidDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_BidDetails_Result">
+                <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+                <ScalarProperty Name="BidUnit" ColumnName="BidUnit" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+                <ScalarProperty Name="StatusComments" ColumnName="StatusComments" />
+                <ScalarProperty Name="BidCreatedDt" ColumnName="BidCreatedDt" />
+                <ScalarProperty Name="BidUpdatedDt" ColumnName="BidUpdatedDt" />
+                <ScalarProperty Name="BidCreatedBy" ColumnName="BidCreatedBy" />
+                <ScalarProperty Name="BidUpdatedBy" ColumnName="BidUpdatedBy" />
+                <ScalarProperty Name="ShareDescription" ColumnName="ShareDescription" />
+                <ScalarProperty Name="ShareholderContactNumber" ColumnName="ShareholderContactNumber" />
+                <ScalarProperty Name="Seller" ColumnName="Seller" />
+                <ScalarProperty Name="Buyer" ColumnName="Buyer" />
+                <ScalarProperty Name="SellerAvailableShares" ColumnName="SellerAvailableShares" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_Summary" FunctionName="ShareTradeModel.Store.Get_Summary">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_Summary_Result">
+                <ScalarProperty Name="QID" ColumnName="QID" />
+                <ScalarProperty Name="AvailableShares" ColumnName="AvailableShares" />
+                <ScalarProperty Name="SaleRegisteredForSale" ColumnName="SaleRegisteredForSale" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_Summary_BidSubmitted" FunctionName="ShareTradeModel.Store.Get_Summary_BidSubmitted">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_Summary_BidSubmitted_Result">
+                <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+                <ScalarProperty Name="BidUnit" ColumnName="BidUnit" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+                <ScalarProperty Name="StatusComments" ColumnName="StatusComments" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ShareHolderName" ColumnName="ShareHolderName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Share_Details">
+            <EntityTypeMapping TypeName="ShareTradeModel.Share_Details">
+              <MappingFragment StoreEntitySet="Share_Details">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AvailableShares" ColumnName="AvailableShares" />
+                <ScalarProperty Name="ShareholderID" ColumnName="ShareholderID" />
+                <ScalarProperty Name="QID" ColumnName="QID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ShareDetailsId" ColumnName="ShareDetailsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Get_ShareDetails" FunctionName="ShareTradeModel.Store.Get_ShareDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_ShareDetails_Result">
+                <ScalarProperty Name="ShareDetailsId" ColumnName="ShareDetailsId" />
+                <ScalarProperty Name="AvailableShares" ColumnName="AvailableShares" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="QID" ColumnName="QID" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ShareholderID" ColumnName="ShareholderID" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="ShareCreatedBy" ColumnName="ShareCreatedBy" />
+                <ScalarProperty Name="ShareUpdatedBy" ColumnName="ShareUpdatedBy" />
+                <ScalarProperty Name="AssignedUser" ColumnName="AssignedUser" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Certificates">
+            <EntityTypeMapping TypeName="ShareTradeModel.Certificates">
+              <MappingFragment StoreEntitySet="Certificates">
+                <ScalarProperty Name="UploadedDt" ColumnName="UploadedDt" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CertificateId" ColumnName="CertificateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Get_Certificates" FunctionName="ShareTradeModel.Store.Get_Certificates">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_Certificates_Result">
+                <ScalarProperty Name="CertificateId" ColumnName="CertificateId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="UploadedDt" ColumnName="UploadedDt" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_Purchase_Interest_Notification" FunctionName="ShareTradeModel.Store.Get_Purchase_Interest_Notification">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_Purchase_Interest_Notification_Result">
+                <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+                <ScalarProperty Name="NotificationText" ColumnName="NotificationText" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Sale_Details">
+            <EntityTypeMapping TypeName="ShareTradeModel.Sale_Details">
+              <MappingFragment StoreEntitySet="Sale_Details">
+                <ScalarProperty Name="IsNegotiable" ColumnName="IsNegotiable" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+                <ScalarProperty Name="StatusComments" ColumnName="StatusComments" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="SaleRemarks" ColumnName="SaleRemarks" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="NumberOfShares" ColumnName="NumberOfShares" />
+                <ScalarProperty Name="ShareDetailsId" ColumnName="ShareDetailsId" />
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Get_SaleBidDetails" FunctionName="ShareTradeModel.Store.Get_SaleBidDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_SaleBidDetails_Result">
+                <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+                <ScalarProperty Name="BidUnit" ColumnName="BidUnit" />
+                <ScalarProperty Name="NumberOfShares" ColumnName="NumberOfShares" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+                <ScalarProperty Name="ShareDescription" ColumnName="ShareDescription" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+                <ScalarProperty Name="StatusComments" ColumnName="StatusComments" />
+                <ScalarProperty Name="CreatedBy_string" ColumnName="CreatedBy_string" />
+                <ScalarProperty Name="UpdatedBy_string" ColumnName="UpdatedBy_string" />
+                <ScalarProperty Name="ShareholderContactNumber" ColumnName="ShareholderContactNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_SaleDetails" FunctionName="ShareTradeModel.Store.Get_SaleDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_SaleDetails_Result">
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="ShareDetailsId" ColumnName="ShareDetailsId" />
+                <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+                <ScalarProperty Name="SaleRemarks" ColumnName="SaleRemarks" />
+                <ScalarProperty Name="NumberOfShares" ColumnName="NumberOfShares" />
+                <ScalarProperty Name="ShareUnitPrice" ColumnName="ShareUnitPrice" />
+                <ScalarProperty Name="ApplicationStatus" ColumnName="ApplicationStatus" />
+                <ScalarProperty Name="ApplicationStatusComments" ColumnName="ApplicationStatusComments" />
+                <ScalarProperty Name="IsNegotiable" ColumnName="IsNegotiable" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+                <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+                <ScalarProperty Name="AvailableShares" ColumnName="AvailableShares" />
+                <ScalarProperty Name="ShareDescription" ColumnName="ShareDescription" />
+                <ScalarProperty Name="SaleCreatedDt" ColumnName="SaleCreatedDt" />
+                <ScalarProperty Name="SaleUpdatedDt" ColumnName="SaleUpdatedDt" />
+                <ScalarProperty Name="ShareCreatedDt" ColumnName="ShareCreatedDt" />
+                <ScalarProperty Name="SaleCreatedBy" ColumnName="SaleCreatedBy" />
+                <ScalarProperty Name="SellerContactNumber" ColumnName="SellerContactNumber" />
+                <ScalarProperty Name="SaleUpdatedBy" ColumnName="SaleUpdatedBy" />
+                <ScalarProperty Name="ShareCreatedBy" ColumnName="ShareCreatedBy" />
+                <ScalarProperty Name="BidCount" ColumnName="BidCount" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="ShareholderContactNumber" ColumnName="ShareholderContactNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_ShareSaleDetails" FunctionName="ShareTradeModel.Store.Get_ShareSaleDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_ShareSaleDetails_Result">
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="ShareDetailsId" ColumnName="ShareDetailsId" />
+                <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+                <ScalarProperty Name="ApplicationRemarks" ColumnName="ApplicationRemarks" />
+                <ScalarProperty Name="NumberOfShares" ColumnName="NumberOfShares" />
+                <ScalarProperty Name="ShareUnitPrice" ColumnName="ShareUnitPrice" />
+                <ScalarProperty Name="ShareDescription" ColumnName="ShareDescription" />
+                <ScalarProperty Name="ApplicationStatus" ColumnName="ApplicationStatus" />
+                <ScalarProperty Name="ApplicationStatusComments" ColumnName="ApplicationStatusComments" />
+                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+                <ScalarProperty Name="BidUnit" ColumnName="BidUnit" />
+                <ScalarProperty Name="BidStatus" ColumnName="BidStatus" />
+                <ScalarProperty Name="BidStatusComments" ColumnName="BidStatusComments" />
+                <ScalarProperty Name="SaleCreatedDt" ColumnName="SaleCreatedDt" />
+                <ScalarProperty Name="SaleUpdatedDt" ColumnName="SaleUpdatedDt" />
+                <ScalarProperty Name="ShareCreatedDt" ColumnName="ShareCreatedDt" />
+                <ScalarProperty Name="ProposalCreatedDt" ColumnName="ProposalCreatedDt" />
+                <ScalarProperty Name="SaleCreatedBy" ColumnName="SaleCreatedBy" />
+                <ScalarProperty Name="SaleUpdatedBy" ColumnName="SaleUpdatedBy" />
+                <ScalarProperty Name="ShareCreatedBy" ColumnName="ShareCreatedBy" />
+                <ScalarProperty Name="ProposalCreatedBy" ColumnName="ProposalCreatedBy" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_Summary_BidReceived" FunctionName="ShareTradeModel.Store.Get_Summary_BidReceived">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_Summary_BidReceived_Result">
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="ShareDetailsId" ColumnName="ShareDetailsId" />
+                <ScalarProperty Name="NumberOfShares" ColumnName="NumberOfShares" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="SaleRemarks" ColumnName="SaleRemarks" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StatusComments" ColumnName="StatusComments" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+                <ScalarProperty Name="BidderName" ColumnName="BidderName" />
+                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+                <ScalarProperty Name="BidderContactNumber" ColumnName="BidderContactNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Purchase_Interest_Notification">
+            <EntityTypeMapping TypeName="ShareTradeModel.Purchase_Interest_Notification">
+              <MappingFragment StoreEntitySet="Purchase_Interest_Notification">
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Share" ColumnName="Share" />
+                <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Get_UserList" FunctionName="ShareTradeModel.Store.Get_UserList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_UserList_Result">
+                <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+                <ScalarProperty Name="Contact_Number" ColumnName="Contact_Number" />
+                <ScalarProperty Name="QID_Number" ColumnName="QID_Number" />
+                <ScalarProperty Name="Shareholder_ID" ColumnName="Shareholder_ID" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy_Name" ColumnName="CreatedBy_Name" />
+                <ScalarProperty Name="UpdatedBy_Name" ColumnName="UpdatedBy_Name" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsAdminApproved" ColumnName="IsAdminApproved" />
+                <ScalarProperty Name="AvailableShares" ColumnName="AvailableShares" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_BidDetails_Report" FunctionName="ShareTradeModel.Store.Get_BidDetails_Report">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_BidDetails_Report_Result">
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="ProposalId" ColumnName="ProposalId" />
+                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+                <ScalarProperty Name="BidUnit" ColumnName="BidUnit" />
+                <ScalarProperty Name="SaleUnitPrice" ColumnName="SaleUnitPrice" />
+                <ScalarProperty Name="BidStatus" ColumnName="BidStatus" />
+                <ScalarProperty Name="BidCreatedDate" ColumnName="BidCreatedDate" />
+                <ScalarProperty Name="BidUpdatedDate" ColumnName="BidUpdatedDate" />
+                <ScalarProperty Name="BidUpdatedBy" ColumnName="BidUpdatedBy" />
+                <ScalarProperty Name="Buyer" ColumnName="Buyer" />
+                <ScalarProperty Name="Seller" ColumnName="Seller" />
+                <ScalarProperty Name="SellerContactNumber" ColumnName="SellerContactNumber" />
+                <ScalarProperty Name="SellerAvailableShares" ColumnName="SellerAvailableShares" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_SaleDetails_Report" FunctionName="ShareTradeModel.Store.Get_SaleDetails_Report">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_SaleDetails_Report_Result">
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="NumberOfShares" ColumnName="NumberOfShares" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="PriceNegotiable" ColumnName="PriceNegotiable" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="SaleStatus" ColumnName="SaleStatus" />
+                <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+                <ScalarProperty Name="SaleCreatedDate" ColumnName="SaleCreatedDate" />
+                <ScalarProperty Name="SaleUpdatedDate" ColumnName="SaleUpdatedDate" />
+                <ScalarProperty Name="Seller" ColumnName="Seller" />
+                <ScalarProperty Name="SellerContactNumber" ColumnName="SellerContactNumber" />
+                <ScalarProperty Name="BidCount" ColumnName="BidCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ShareTradeModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IsAdminApproved" ColumnName="IsAdminApproved" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Info">
+            <EntityTypeMapping TypeName="ShareTradeModel.User_Info">
+              <MappingFragment StoreEntitySet="User_Info">
+                <ScalarProperty Name="Shareholder_ID" ColumnName="Shareholder_ID" />
+                <ScalarProperty Name="QID_Number" ColumnName="QID_Number" />
+                <ScalarProperty Name="Contact_Number" ColumnName="Contact_Number" />
+                <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserInfoId" ColumnName="UserInfoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Get_Quorum" FunctionName="ShareTradeModel.Store.Get_Quorum">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShareTradeModel.Get_Quorum_Result">
+                <ScalarProperty Name="ProvidedProxy" ColumnName="ProvidedProxy" />
+                <ScalarProperty Name="PersonallyAttended" ColumnName="PersonallyAttended" />
+                <ScalarProperty Name="TotalAttendance" ColumnName="TotalAttendance" />
+                <ScalarProperty Name="Quorum" ColumnName="Quorum" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
